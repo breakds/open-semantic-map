@@ -11,8 +11,16 @@ in pkgs.mkShell rec {
   buildInputs = with pkgs; [
     osm-python
     osmium-tool
+    pkgconfig
     libosmium
     spdlog
+
+    # Compression
+    bzip2
+    zlib
+
+    protozero  # Protocol Buffer
+    expat      # XML Parser
   ];
   shellHook = ''
     export PS1="$(echo -e '\uf277') {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} (${name}) \\$ \[$(tput sgr0)\]"

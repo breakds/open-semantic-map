@@ -6,6 +6,17 @@ project(OpenSemapRouting VERSION 0.1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# FIXME: Explicitly add dependencies when not in nix-shell.
+# Package Dependencies
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(ZLIB REQUIRED zlib)
+pkg_check_modules(BZIP2 REQUIRED bzip2)
+pkg_check_modules(EXPAT REQUIRED expat)
 
 add_executable(osm_routing_cli cli.cc)
+target_link_libraries(
+  osm_routing_cli
+  ${BZIP2_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  ${ZLIB_LIBRARIES})
+  
