@@ -1,4 +1,4 @@
-#include "utils/extract_junction.h"
+#include "utils/filter_isolated_roads.h"
 
 #include "osmium/io/pbf_input.hpp"
 #include "osmium/io/reader_with_progress_bar.hpp"
@@ -10,28 +10,29 @@
 
 namespace open_semap {
 
-std::unordered_set<osmium::object_id_type> ExtractJunction(const std::string& path) {
-  spdlog::info("Extracting junction nodes.");
+std::unordered_set<osmium::object_id_type> FilterIsolatedRoads(
+    const std::string& path,
+    const std::unordered_set<osmium::object_id_type>& junctions) {
+  spdlog::info("Prcoessing ways to filter out isolated roads.");
   osmium::io::File input_file(path);
   // Only process the ways.
   osmium::io::ReaderWithProgressBar reader(true, input_file,
                                            osmium::osm_entity_bits::way);
-  ExtractJunctionHandler extract_junction;
-  osmium::apply(reader, extract_junction);
+  FilterIsolatedRoadsHandler filter(junctions);
+  osmium::apply(reader, filter);
   reader.close();
-  return extract_junction.ReleaseJunctions();
+  return filter.ReleaseResult();
 }
 
-void ExtractJunctionHandler::way(const osmium::Way& way) {
+void FilterIsolatedRoadsHandler::way(const osmium::Way& way) {
   if (!predicate::IsValidRoad(way)) {
     return;
   }
 
   for (const auto& node : way.nodes()) {
-    if (visited.count(node.ref()) > 0) {
-      junctions.emplace(node.ref());
-    } else {
-      visited.emplace(node.ref());
+    if (junctions.get().count(node.ref()) > 0) {
+      inter_connected_roads.emplace(way.id());
+      break;
     }
   }
 }

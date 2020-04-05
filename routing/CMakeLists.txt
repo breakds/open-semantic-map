@@ -29,17 +29,19 @@ pkg_check_modules(SPDLOG REQUIRED spdlog)
 # No need to add libosmium explicitly because it is header only.
 
 add_library(predicates utils/predicates.cc)
+
+add_library(extract_junction utils/extract_junction.cc)
 target_link_libraries(
+  extract_junction
   predicates
   ${BZIP2_LIBRARIES}
   ${ZLIB_LIBRARIES}
   ${EXPAT_LIBRARIES}
   Threads::Threads)
 
-
-add_library(extract_junction utils/extract_junction.cc)
+add_library(filter_isolated_roads utils/filter_isolated_roads.cc)
 target_link_libraries(
-  extract_junction
+  filter_isolated_roads
   predicates
   ${BZIP2_LIBRARIES}
   ${ZLIB_LIBRARIES}
@@ -54,5 +56,6 @@ add_executable(extract_routes extract_routes.cc)
 target_link_libraries(
   extract_routes
   extract_junction
+  filter_isolated_roads
   ${GFLAGS_LIBRARIES}
   ${SPDLOG_LIBRARIES})
