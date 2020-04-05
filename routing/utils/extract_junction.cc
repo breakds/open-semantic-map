@@ -11,7 +11,9 @@ namespace open_semap {
 
 std::unordered_set<osmium::object_id_type> ExtractJunction(const std::string& path) {
   osmium::io::File input_file(path);
-  osmium::io::ReaderWithProgressBar reader(true, input_file);
+  // Only process the ways.
+  osmium::io::ReaderWithProgressBar reader(true, input_file,
+                                           osmium::osm_entity_bits::way);
   ExtractJunctionHandler extract_junction;
   osmium::apply(reader, extract_junction);
   reader.close();
