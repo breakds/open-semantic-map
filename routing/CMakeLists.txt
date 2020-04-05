@@ -48,6 +48,15 @@ target_link_libraries(
   ${EXPAT_LIBRARIES}
   Threads::Threads)
 
+add_library(split_road utils/split_road.cc)
+target_link_libraries(
+  split_road
+  predicates
+  ${BZIP2_LIBRARIES}
+  ${ZLIB_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  Threads::Threads)
+
 # +------------------------------------------------------------+
 # | Targets: Binaries                                          |
 # +------------------------------------------------------------+
@@ -56,6 +65,7 @@ add_executable(extract_routes extract_routes.cc)
 target_link_libraries(
   extract_routes
   extract_junction
+  split_road
   filter_isolated_roads
   ${GFLAGS_LIBRARIES}
   ${SPDLOG_LIBRARIES})

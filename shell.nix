@@ -11,6 +11,7 @@ in pkgs.mkShell rec {
   buildInputs = with pkgs; [
     osm-python
     osmium-tool
+    merkaartor
     pkgconfig
     libosmium
     spdlog
