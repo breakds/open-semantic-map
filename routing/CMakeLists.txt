@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Package Dependencies
 find_package(PkgConfig REQUIRED)
+find_package(Threads REQUIRED)
 
 pkg_check_modules(ZLIB REQUIRED zlib)
 pkg_check_modules(BZIP2 REQUIRED bzip2)
@@ -18,5 +19,14 @@ target_link_libraries(
   osm_routing_cli
   ${BZIP2_LIBRARIES}
   ${EXPAT_LIBRARIES}
-  ${ZLIB_LIBRARIES})
-  
+  ${ZLIB_LIBRARIES}
+  Threads::Threads)
+
+add_executable(extract_routes extract_routes.cc)
+target_link_libraries(
+  extract_routes
+  ${BZIP2_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  ${ZLIB_LIBRARIES}
+  Threads::Threads)
+
