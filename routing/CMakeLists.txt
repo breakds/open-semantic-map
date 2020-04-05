@@ -3,30 +3,46 @@ cmake_minimum_required(VERSION 3.10)
 project(OpenSemapRouting VERSION 0.1.0)
 
 # C++ Language specific properties
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Package Dependencies
+include_directories(${PROJECT_SOURCE_DIR})
+
+# +------------------------------------------------------------+
+# | 3rd Party Dependencies                                     |
+# +------------------------------------------------------------+
+
 find_package(PkgConfig REQUIRED)
 find_package(Threads REQUIRED)
 
 pkg_check_modules(ZLIB REQUIRED zlib)
 pkg_check_modules(BZIP2 REQUIRED bzip2)
 pkg_check_modules(EXPAT REQUIRED expat)
+pkg_check_modules(GFLAGS REQUIRED gflags)
+pkg_check_modules(SPDLOG REQUIRED spdlog)
 
-add_executable(osm_routing_cli cli.cc)
+# +------------------------------------------------------------+
+# | Targets: Utilities                                         |
+# +------------------------------------------------------------+
+
+# No need to add libosmium explicitly because it is header only.
+add_library(extract_junction utils/extract_junction.cc)
 target_link_libraries(
-  osm_routing_cli
+  extract_junction
   ${BZIP2_LIBRARIES}
-  ${EXPAT_LIBRARIES}
   ${ZLIB_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  ${SPDLOG_LIBRARIES}
   Threads::Threads)
+
+# +------------------------------------------------------------+
+# | Targets: Binaries                                          |
+# +------------------------------------------------------------+
 
 add_executable(extract_routes extract_routes.cc)
 target_link_libraries(
   extract_routes
-  ${BZIP2_LIBRARIES}
-  ${EXPAT_LIBRARIES}
-  ${ZLIB_LIBRARIES}
-  Threads::Threads)
-
+  extract_junction
+  ${GFLAGS_LIBRARIES}
+  ${SPDLOG_LIBRARIES})

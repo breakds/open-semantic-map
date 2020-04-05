@@ -4,6 +4,9 @@ IndentWidth: 2
 ---
 Language: Cpp
 AlignConsecutiveAssignments: true
+AllowShortFunctionsOnASingleLine: false
+AllowShortBlocksOnASingleLine: false
+ColumnLimit: 90
 ---
 Language: Proto
 ColumnLimit: 100

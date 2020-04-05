@@ -14,6 +14,7 @@ in pkgs.mkShell rec {
     pkgconfig
     libosmium
     spdlog
+    gflags
 
     # Compression
     bzip2

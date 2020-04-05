@@ -1,35 +1,24 @@
+#include <unordered_set>
+
+#include "gflags/gflags.h"
 #include "spdlog/spdlog.h"
 
-#include "osmium/handler.hpp"
-#include "osmium/io/pbf_input.hpp"
-#include "osmium/io/xml_input.hpp"
-#include "osmium/util/progress_bar.hpp"
-#include "osmium/visitor.hpp"
+#include "utils/extract_junction.h"
 
-struct RoadHandler : public osmium::handler::Handler {
-  void way(const osmium::Way& way) {
-    const char* highway = way.tags()["highway"];
-    if (highway != nullptr) {
-      const char* name = way.tags()["name"];
-      if (name == nullptr) {
-        spdlog::info("Unknown");
-      } else {
-        spdlog::info("{}", name);
-      }
-    }
-  }
-
-};  // struct RoadLengthHandler
+DEFINE_string(input, "/home/breakds/dataset/osm/kirkwood.osm",
+              "The input OSM file in xml or pbf format.");
 
 int main(int argc, char** argv) {
-  osmium::io::File input_file("/home/breakds/dataset/osm/kirkwood.osm");
-  osmium::io::Reader reader(input_file);
+  gflags::ParseCommandLineFlags(&argc, &argv, true);
 
-  RoadHandler handler;
+  std::unordered_set<osmium::object_id_type> junctions =
+      open_semap::ExtractJunction(FLAGS_input);
 
-  osmium::apply(reader, handler);
+  for (const osmium::object_id_type id : junctions) {
+    spdlog::info("Junction node {}", id);
+  }
 
-  reader.close();
+  spdlog::info("There are {} junctions in total", junctions.size());
 
   return 0;
 }
