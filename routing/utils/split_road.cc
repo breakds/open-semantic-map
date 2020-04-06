@@ -64,6 +64,7 @@ void SplitRoadHandler::way(const osmium::Way& way) {
   }
 
   const char* highway = way.tags()["highway"];
+  const char* name    = way.tags()["name"];
 
   std::vector<size_t> vertex_indices;
   vertex_indices.reserve(way.nodes().size());
@@ -94,13 +95,8 @@ void SplitRoadHandler::way(const osmium::Way& way) {
     // Add highway tag and from/to tag
     {
       osmium::builder::TagListBuilder tag_builder(builder);
-      if (highway == nullptr) {
-        tag_builder.add_tag("highway", "road");
-      } else {
-        tag_builder.add_tag("highway", highway);
-      }
-      tag_builder.add_tag("from", std::to_string(from).c_str());
-      tag_builder.add_tag("to", std::to_string(to).c_str());
+      tag_builder.add_tag("highway", highway == nullptr ? "road" : highway);
+      tag_builder.add_tag("name", name == nullptr ? "NONAME Rd" : name);
     }
   }
 
