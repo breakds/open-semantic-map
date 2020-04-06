@@ -11,8 +11,6 @@
 #include "osmium/visitor.hpp"
 #include "spdlog/spdlog.h"
 
-#include "utils/predicates.h"
-
 namespace open_semap {
 
 void SplitRoad(const std::string& path, const std::string& output_path,

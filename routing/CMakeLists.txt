@@ -39,6 +39,15 @@ target_link_libraries(
   ${EXPAT_LIBRARIES}
   Threads::Threads)
 
+add_library(filter_bounding_box utils/filter_bounding_box.cc)
+target_link_libraries(
+  filter_bounding_box
+  ${BZIP2_LIBRARIES}
+  ${ZLIB_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  Threads::Threads)
+
+
 add_library(filter_isolated_roads utils/filter_isolated_roads.cc)
 target_link_libraries(
   filter_isolated_roads
@@ -51,7 +60,6 @@ target_link_libraries(
 add_library(split_road utils/split_road.cc)
 target_link_libraries(
   split_road
-  predicates
   ${BZIP2_LIBRARIES}
   ${ZLIB_LIBRARIES}
   ${EXPAT_LIBRARIES}
@@ -67,5 +75,6 @@ target_link_libraries(
   extract_junction
   split_road
   filter_isolated_roads
+  filter_bounding_box
   ${GFLAGS_LIBRARIES}
   ${SPDLOG_LIBRARIES})
