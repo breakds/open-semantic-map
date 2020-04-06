@@ -20,10 +20,12 @@ int main(int argc, char** argv) {
   std::unordered_set<osmium::object_id_type> junctions =
       open_semap::ExtractJunction(FLAGS_input);
 
-  std::unordered_set<osmium::object_id_type> roads =
-      open_semap::FilterIsolatedRoads(FLAGS_input, junctions);
+  std::unordered_set<osmium::object_id_type> roads;
+  std::unordered_set<osmium::object_id_type> useful_nodes;
+  // Thank god we have copy ellision.
+  std::tie(roads, useful_nodes) = open_semap::FilterIsolatedRoads(FLAGS_input, junctions);
 
-  open_semap::SplitRoad(FLAGS_input, FLAGS_output, junctions, roads);
+  open_semap::SplitRoad(FLAGS_input, FLAGS_output, junctions, roads, useful_nodes);
 
   spdlog::info("There are {} junctions in total", junctions.size());
   spdlog::info("There are {} inter-connected roads in total", roads.size());

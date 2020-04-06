@@ -10,9 +10,10 @@
 
 namespace open_semap {
 
-std::unordered_set<osmium::object_id_type> FilterIsolatedRoads(
-    const std::string& path,
-    const std::unordered_set<osmium::object_id_type>& junctions) {
+std::pair<std::unordered_set<osmium::object_id_type>,
+          std::unordered_set<osmium::object_id_type>>
+FilterIsolatedRoads(const std::string& path,
+                    const std::unordered_set<osmium::object_id_type>& junctions) {
   spdlog::info("Prcoessing ways to filter out isolated roads.");
   osmium::io::File input_file(path);
   // Only process the ways.
@@ -29,10 +30,18 @@ void FilterIsolatedRoadsHandler::way(const osmium::Way& way) {
     return;
   }
 
+  bool hit = false;
   for (const auto& node : way.nodes()) {
     if (junctions.get().count(node.ref()) > 0) {
       inter_connected_roads.emplace(way.id());
+      hit = true;
       break;
+    }
+  }
+
+  if (hit) {
+    for (const auto& node : way.nodes()) {
+      useful_nodes.emplace(node.ref());
     }
   }
 }

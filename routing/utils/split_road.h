@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <functional>
 #include <string>
 #include <unordered_set>
@@ -22,16 +23,18 @@ namespace open_semap {
 // 3. The length of the split roads will be written.
 void SplitRoad(const std::string& path, const std::string& output_path,
                const std::unordered_set<osmium::object_id_type>& junctions,
-               const std::unordered_set<osmium::object_id_type>& roads);
+               const std::unordered_set<osmium::object_id_type>& roads,
+               const std::unordered_set<osmium::object_id_type>& useful_nodes);
 
 class SplitRoadHandler : public osmium::handler::Handler {
  public:
   using IdSet = std::unordered_set<osmium::object_id_type>;
 
   SplitRoadHandler(const IdSet& junctions_, const IdSet& approved_roads_,
-                   osmium::memory::Buffer& output_buffer_)
+                   const IdSet& useful_nodes_, osmium::memory::Buffer& output_buffer_)
       : junctions(junctions_),
         approved_roads(approved_roads_),
+        useful_nodes(useful_nodes_),
         output_buffer(output_buffer_) {
   }
 
@@ -42,7 +45,9 @@ class SplitRoadHandler : public osmium::handler::Handler {
  private:
   std::reference_wrapper<const IdSet> junctions;
   std::reference_wrapper<const IdSet> approved_roads;
+  std::reference_wrapper<const IdSet> useful_nodes;
   std::reference_wrapper<osmium::memory::Buffer> output_buffer;
+  std::atomic<osmium::object_id_type> new_way_id = 1;
 };
 
 }  // namespace open_semap

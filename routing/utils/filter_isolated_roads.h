@@ -3,6 +3,7 @@
 #include <functional>
 #include <string>
 #include <unordered_set>
+#include <utility>
 
 #include "osmium/handler.hpp"
 #include "osmium/osm.hpp"
@@ -13,8 +14,10 @@ namespace open_semap {
 // and returns a set of roads that are inter-connected with each
 // other, i.e. isolated roads are filtered out. Isolated roads are
 // regular roads that do not contain any junction nodes.
-std::unordered_set<osmium::object_id_type> FilterIsolatedRoads(
-    const std::string& path, const std::unordered_set<osmium::object_id_type>& junctions);
+std::pair<std::unordered_set<osmium::object_id_type>,
+          std::unordered_set<osmium::object_id_type>>
+FilterIsolatedRoads(const std::string& path,
+                    const std::unordered_set<osmium::object_id_type>& junctions);
 
 class FilterIsolatedRoadsHandler : public osmium::handler::Handler {
  public:
@@ -25,13 +28,14 @@ class FilterIsolatedRoadsHandler : public osmium::handler::Handler {
 
   void way(const osmium::Way& way);
 
-  IdSet ReleaseResult() {
-    return std::move(inter_connected_roads);
+  std::pair<IdSet, IdSet> ReleaseResult() {
+    return std::make_pair(std::move(inter_connected_roads), std::move(useful_nodes));
   }
 
  private:
   std::reference_wrapper<const IdSet> junctions;
   IdSet inter_connected_roads{};
+  IdSet useful_nodes{};
 };
 
 }  // namespace open_semap
