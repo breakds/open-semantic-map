@@ -21,6 +21,7 @@ pkg_check_modules(BZIP2 REQUIRED bzip2)
 pkg_check_modules(EXPAT REQUIRED expat)
 pkg_check_modules(GFLAGS REQUIRED gflags)
 pkg_check_modules(SPDLOG REQUIRED spdlog)
+pkg_check_modules(GTEST REQUIRED gtest)
 
 # +------------------------------------------------------------+
 # | Targets: Utilities                                         |
@@ -78,3 +79,30 @@ target_link_libraries(
   filter_bounding_box
   ${GFLAGS_LIBRARIES}
   ${SPDLOG_LIBRARIES})
+
+# +------------------------------------------------------------+
+# | Targets: Tests                                             |
+# +------------------------------------------------------------+
+
+add_executable(road_graph_test tests/road_graph_test.cc)
+target_link_libraries(
+  road_graph_test
+  gtest_main
+  ${GTEST_LIBRARIES})
+set_target_properties(road_graph_test PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY tests)
+
+add_executable(osm_object_test tests/osm_object_test.cc)
+target_link_libraries(
+  osm_object_test
+  gtest_main
+  ${BZIP2_LIBRARIES}
+  ${ZLIB_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  ${GTEST_LIBRARIES}
+  ${SPDLOG_LIBRARIES}
+  Threads::Threads)
+set_target_properties(osm_object_test PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY tests)
+
+
