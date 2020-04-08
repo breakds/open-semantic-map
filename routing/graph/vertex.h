@@ -13,6 +13,9 @@ class Edge;
 
 class Vertex {
  public:
+  Vertex(osmium::object_id_type id, osmium::location location) : id_(id), loc_(location) {
+  }
+
   inline osmium::object_id_type id() const {
     return id_;
   }

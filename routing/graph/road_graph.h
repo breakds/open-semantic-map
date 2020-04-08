@@ -15,6 +15,9 @@ class RoadGraph {
   static RoadGraph LoadFromFile(const std::string &path);
 
  private:
+  friend class Vertex;
+  friend class Edge;
+
   std::vector<std::unique_ptr<Vertex>> vertices_;
   std::vector<std::unique_ptr<Edge>> edges_;
 };
