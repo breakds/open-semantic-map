@@ -1,22 +1,31 @@
 #include "graph/road_graph.h"
 
-#include <unordered_map>
 #include <utility>
 
 #include "graph/edge.h"
 #include "graph/vertex.h"
 
-#include "osmium/osm/location.h"
-#include "osmium/osm/node.h"
-#include "osmium/osm/types.h"
-#include "osmium/osm/way.h"
+#include "osmium/handler.hpp"
+#include "osmium/io/pbf_input.hpp"
+#include "osmium/io/reader_with_progress_bar.hpp"
+#include "osmium/io/xml_input.hpp"
+#include "osmium/osm/location.hpp"
+#include "osmium/osm/node.hpp"
+#include "osmium/osm/types.hpp"
+#include "osmium/osm/way.hpp"
+#include "osmium/visitor.hpp"
+
+#include "spdlog/spdlog.h"
 
 namespace open_semap {
 namespace graph {
 
 struct NodeInfo {
+  NodeInfo(osmium::object_id_type id_, osmium::Location loc_) : id(id_), loc(loc_) {
+  }
+
   osmium::object_id_type id;
-  osmium::location loc;
+  osmium::Location loc;
 };
 
 class NodeLoaderHandler : public osmium::handler::Handler {
@@ -32,25 +41,51 @@ class NodeLoaderHandler : public osmium::handler::Handler {
     if (is_vertex) {
       vertices_.emplace_back(node.id(), node.location());
     } else {
-      non_vertices_.emplace(node.id(), node.location());
+      node_map_.emplace(node.id(), node.location());
     }
   }
 
-  inline std::vector<NodeInfo> ReleaseVertices() {
+  inline std::vector<std::unique_ptr<Vertex>> ReleaseVertices() {
     return std::move(vertices_);
   }
 
-  inline std::unordered_map<osmium::object_id_type, osmium::location>
-  ReleaseNonVertices() {
-    return std::move(non_vertices_);
+  inline std::unordered_map<osmium::object_id_type, osmium::Location> ReleaseNodeMap() {
+    return std::move(node_map_);
   }
 
  private:
-  std::vector<std::pair<osmium::object_id_type, >> vertices_;
-  std::unordered_map<osmium::object_id_type, osmium::location> non_vertices_;
+  std::vector<std::unique_ptr<Vertex>> vertices_;
+  std::unordered_map<osmium::object_id_type, osmium::Location> node_map_;
 };
 
+std::unordered_map<RoadGraph::VertexID, std::reference_wrapper<Vertex>>
+GenerateIdToVertexMap(const std::vector<std::unique_ptr<Vertex>> &vertices) {
+  std::unordered_map<RoadGraph::VertexID, std::reference_wrapper<Vertex>> result;
+  for (const std::unique_ptr<Vertex> &vertex : vertices) {
+    result.emplace(vertex->id(), *vertex);
+  }
+  return result;
+}
+
 RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
+  spdlog::info("Loading the road graph.");
+
+  RoadGraph graph;
+  std::unordered_map<osmium::object_id_type, osmium::Location> node_map;
+
+  {
+    osmium::io::File input_file(path);
+    osmium::io::ReaderWithProgressBar reader(true, input_file,
+                                             osmium::osm_entity_bits::node);
+    NodeLoaderHandler handler;
+    osmium::apply(handler, reader);
+    graph.vertices_     = handler.ReleaseVertices();
+    graph.id_to_vertex_ = GenerateIdToVertexMap(graph.vertices_);
+    node_map            = handler.ReleaseNodeMap();
+    reader.close();
+  }
+
+  return graph;
 }
 
 }  // namespace graph

@@ -48,7 +48,6 @@ target_link_libraries(
   ${EXPAT_LIBRARIES}
   Threads::Threads)
 
-
 add_library(filter_isolated_roads utils/filter_isolated_roads.cc)
 target_link_libraries(
   filter_isolated_roads
@@ -65,6 +64,16 @@ target_link_libraries(
   ${ZLIB_LIBRARIES}
   ${EXPAT_LIBRARIES}
   Threads::Threads)
+
+add_library(road_graph graph/road_graph.cc)
+target_link_libraries(
+  road_graph
+  ${BZIP2_LIBRARIES}
+  ${ZLIB_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  ${SPDLOG_LIBRARIES}
+  Threads::Threads)
+
 
 # +------------------------------------------------------------+
 # | Targets: Binaries                                          |
@@ -91,6 +100,7 @@ configure_file(tests/testdata.h.in tests/testdata.h @ONLY)
 add_executable(road_graph_test tests/road_graph_test.cc)
 target_link_libraries(
   road_graph_test
+  road_graph
   gtest_main
   ${GTEST_LIBRARIES})
 set_target_properties(road_graph_test PROPERTIES

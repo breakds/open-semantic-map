@@ -3,7 +3,8 @@
 #include <functional>
 #include <vector>
 
-#include "osmium/osm/types.h"
+#include "osmium/osm/types.hpp"
+#include "osmium/osm/location.hpp"
 
 namespace open_semap {
 namespace graph {
@@ -36,7 +37,7 @@ class Edge {
   std::reference_wrapper<const Vertex> to_;
   // Store the intermediate points for visualization uses. They do not
   // participate in the routing algorithm.
-  std::vector<osmium::location> points_;
+  std::vector<osmium::Location> points_;
   double length_;
 };
 
