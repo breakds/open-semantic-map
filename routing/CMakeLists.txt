@@ -84,6 +84,10 @@ target_link_libraries(
 # | Targets: Tests                                             |
 # +------------------------------------------------------------+
 
+set(CMAKE_TEST_DATA_PATH "${CMAKE_CURRENT_BINARY_DIR}/tests/data")
+file(COPY tests/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/tests)
+configure_file(tests/testdata.h.in tests/testdata.h @ONLY)
+
 add_executable(road_graph_test tests/road_graph_test.cc)
 target_link_libraries(
   road_graph_test
@@ -93,6 +97,7 @@ set_target_properties(road_graph_test PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY tests)
 
 add_executable(osm_object_test tests/osm_object_test.cc)
+target_include_directories(osm_object_test PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(
   osm_object_test
   gtest_main

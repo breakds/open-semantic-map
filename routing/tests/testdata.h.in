@@ -1,0 +1,7 @@
+namespace open_semap {
+namespace testing {
+
+static const char TEST_DATA_PATH[] = "@CMAKE_TEST_DATA_PATH@";
+
+}
+}  // namespace open_semap
