@@ -118,6 +118,7 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
         if (edge_info.point_ids.size() < 2) {
           spdlog::warn("Skipping as edge {} has {} points, which is less than 2.",
                        edge_info.id, edge_info.point_ids.size());
+          continue;
         }
         const Vertex &from = graph.GetVertex(edge_info.point_ids.front());
         const Vertex &to   = graph.GetVertex(edge_info.point_ids.back());
