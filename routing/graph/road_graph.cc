@@ -141,5 +141,13 @@ const Vertex &RoadGraph::GetVertex(VertexID id) const {
   return INVALID_VERTEX;
 }
 
+const std::vector<std::unique_ptr<Vertex>> &RoadGraph::vertices() const {
+  return vertices_;
+}
+
+const std::vector<std::unique_ptr<Edge>> &RoadGraph::edges() const {
+  return edges_;
+}
+
 }  // namespace graph
 }  // namespace open_semap

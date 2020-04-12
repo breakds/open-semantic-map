@@ -23,7 +23,10 @@ class RoadGraph {
   RoadGraph(RoadGraph &&) noexcept = default;
   RoadGraph &operator=(RoadGraph &&) noexcept = default;
 
+  // Simple Accessors
   const Vertex &GetVertex(VertexID id) const;
+  const std::vector<std::unique_ptr<Vertex>> &vertices() const;
+  const std::vector<std::unique_ptr<Edge>> &edges() const;
 
  private:
   friend class Vertex;
