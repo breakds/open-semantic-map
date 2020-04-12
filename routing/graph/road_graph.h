@@ -29,9 +29,6 @@ class RoadGraph {
   const std::vector<std::unique_ptr<Edge>> &edges() const;
 
  private:
-  friend class Vertex;
-  friend class Edge;
-
   RoadGraph() = default;
 
   std::vector<std::unique_ptr<Vertex>> vertices_{};

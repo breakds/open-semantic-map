@@ -2,6 +2,7 @@
 
 #include <utility>
 
+#include "osmium/geom/haversine.hpp"
 #include "osmium/handler.hpp"
 #include "osmium/io/pbf_input.hpp"
 #include "osmium/io/reader_with_progress_bar.hpp"
@@ -87,6 +88,18 @@ class WayLoaderHandler : public osmium::handler::Handler {
   std::vector<EdgeInfo> edges_{};
 };
 
+Vertex &QueryVertex(
+    RoadGraph::VertexID id,
+    const std::unordered_map<RoadGraph::VertexID, std::reference_wrapper<Vertex>>
+        &id_to_vertex) {
+  static Vertex INVALID_VERTEX(-1, osmium::Location(0.0, 0.0));
+  auto iter = id_to_vertex.find(id);
+  if (iter != id_to_vertex.end()) {
+    return iter->second.get();
+  }
+  return INVALID_VERTEX;
+}
+
 RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
   spdlog::info("Loading the road graph.");
 
@@ -120,9 +133,34 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
                        edge_info.id, edge_info.point_ids.size());
           continue;
         }
-        const Vertex &from = graph.GetVertex(edge_info.point_ids.front());
-        const Vertex &to   = graph.GetVertex(edge_info.point_ids.back());
+        // Construct edges and fill edge information in vertices. This
+        // exploits the friendship between RoadGraph and Edge/Vertex.
+        Vertex &from = QueryVertex(edge_info.point_ids.front(), graph.id_to_vertex_);
+        Vertex &to   = QueryVertex(edge_info.point_ids.back(), graph.id_to_vertex_);
+        if (from.id() == -1 || to.id() == -1) {
+          spdlog::critical("Cannot find vertex {} or {}.", edge_info.point_ids.front(),
+                           edge_info.point_ids.back());
+        }
         graph.edges_.emplace_back(std::make_unique<Edge>(edge_info.id, from, to));
+        graph.edges_.back()->points_.emplace_back(from.loc());
+
+        osmium::Location prev_loc = from.loc();
+        for (size_t i = 1; i + 1 < edge_info.point_ids.size(); ++i) {
+          auto iter = node_map.find(edge_info.point_ids[i]);
+          if (iter == node_map.end()) {
+            spdlog::critical("Cannot find point with node id = {}",
+                             edge_info.point_ids[i]);
+          }
+          graph.edges_.back()->points_.emplace_back(iter->second);
+          graph.edges_.back()->length_ +=
+              osmium::geom::haversine::distance(prev_loc, iter->second);
+          prev_loc = iter->second;
+        }
+        graph.edges_.back()->points_.emplace_back(to.loc());
+        graph.edges_.back()->length_ +=
+            osmium::geom::haversine::distance(prev_loc, to.loc());
+        from.mutable_outwards().emplace_back(*graph.edges_.back());
+        to.mutable_inwards().emplace_back(*graph.edges_.back());
       }
     }
 
@@ -133,12 +171,7 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
 }
 
 const Vertex &RoadGraph::GetVertex(VertexID id) const {
-  static Vertex INVALID_VERTEX(-1, osmium::Location(0.0, 0.0));
-  auto iter = id_to_vertex_.find(id);
-  if (iter != id_to_vertex_.end()) {
-    return iter->second.get();
-  }
-  return INVALID_VERTEX;
+  return QueryVertex(id, id_to_vertex_);
 }
 
 const std::vector<std::unique_ptr<Vertex>> &RoadGraph::vertices() const {

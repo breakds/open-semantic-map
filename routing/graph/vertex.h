@@ -32,6 +32,14 @@ class Vertex {
     return outwards_;
   }
 
+  inline std::vector<std::reference_wrapper<const Edge>> &mutable_inwards() {
+    return inwards_;
+  }
+
+  inline std::vector<std::reference_wrapper<const Edge>> &mutable_outwards() {
+    return outwards_;
+  }
+
  private:
   osmium::object_id_type id_;
   osmium::Location loc_;
@@ -43,4 +51,3 @@ class Vertex {
 
 }  // namespace graph
 }  // namespace open_semap
-

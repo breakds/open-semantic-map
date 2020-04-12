@@ -39,8 +39,8 @@ class Edge {
   std::reference_wrapper<const Vertex> to_;
   // Store the intermediate points for visualization uses. They do not
   // participate in the routing algorithm.
-  std::vector<osmium::Location> points_;
-  double length_;
+  std::vector<osmium::Location> points_{};
+  double length_ = 0.0;
 };
 
 }  // namespace graph
