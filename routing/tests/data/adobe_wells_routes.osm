@@ -594,73 +594,102 @@
     <tag k="vertex" v="no"/>
   </node>
   <way id="1" uid="1">
+    <nd ref="421266658"/>
+    <nd ref="421266660"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="2" uid="2">
+    <nd ref="421266660"/>
     <nd ref="4698081898"/>
+    <nd ref="421266661"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="3" uid="3">
+    <nd ref="421266661"/>
+    <nd ref="421266662"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="4" uid="4">
+    <nd ref="421266662"/>
     <nd ref="421266663"/>
+    <nd ref="421266664"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="5" uid="5">
+    <nd ref="421266664"/>
+    <nd ref="421266665"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="6" uid="6">
+    <nd ref="421266665"/>
     <nd ref="421266666"/>
+    <nd ref="421266667"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="7" uid="7">
+    <nd ref="421266667"/>
     <nd ref="421266668"/>
+    <nd ref="421266669"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="8" uid="8">
+    <nd ref="421266669"/>
     <nd ref="421266670"/>
+    <nd ref="421266671"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="9" uid="9">
+    <nd ref="421266671"/>
     <nd ref="421266672"/>
+    <nd ref="421266673"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="10" uid="10">
+    <nd ref="421266673"/>
     <nd ref="421266674"/>
     <nd ref="421266675"/>
+    <nd ref="421266676"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="11" uid="11">
+    <nd ref="421266676"/>
+    <nd ref="421266677"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="12" uid="12">
+    <nd ref="421266677"/>
+    <nd ref="421266678"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="13" uid="13">
+    <nd ref="421266698"/>
     <nd ref="421266699"/>
+    <nd ref="421266700"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="14" uid="14">
+    <nd ref="421266700"/>
     <nd ref="7331321963"/>
     <nd ref="421266701"/>
+    <nd ref="421266702"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="15" uid="15">
+    <nd ref="421266702"/>
     <nd ref="421266703"/>
     <nd ref="4698081897"/>
     <nd ref="421266704"/>
@@ -668,10 +697,12 @@
     <nd ref="421266705"/>
     <nd ref="4698081895"/>
     <nd ref="421266706"/>
+    <nd ref="421266708"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="16" uid="16">
+    <nd ref="421266708"/>
     <nd ref="4698081894"/>
     <nd ref="421266710"/>
     <nd ref="4698081893"/>
@@ -680,36 +711,50 @@
     <nd ref="421266716"/>
     <nd ref="4698081891"/>
     <nd ref="432032929"/>
+    <nd ref="421266719"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="17" uid="17">
+    <nd ref="421266719"/>
     <nd ref="421266722"/>
+    <nd ref="421266725"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="18" uid="18">
+    <nd ref="421266725"/>
+    <nd ref="421266727"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="19" uid="19">
+    <nd ref="421266727"/>
+    <nd ref="4698081244"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="20" uid="20">
+    <nd ref="4698081244"/>
+    <nd ref="421266730"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="21" uid="21">
+    <nd ref="421266730"/>
     <nd ref="421266736"/>
+    <nd ref="421266737"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="22" uid="22">
+    <nd ref="421266737"/>
+    <nd ref="421266738"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="23" uid="23">
+    <nd ref="421266738"/>
     <nd ref="421266739"/>
     <nd ref="4698081890"/>
     <nd ref="421266740"/>
@@ -718,96 +763,138 @@
     <nd ref="4698081288"/>
     <nd ref="432032927"/>
     <nd ref="4698081287"/>
+    <nd ref="421266742"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="24" uid="24">
+    <nd ref="421266742"/>
     <nd ref="4698081286"/>
     <nd ref="432032928"/>
     <nd ref="4698081285"/>
     <nd ref="421266743"/>
     <nd ref="4698081284"/>
     <nd ref="421266744"/>
+    <nd ref="421266745"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="25" uid="25">
+    <nd ref="421266745"/>
+    <nd ref="421266746"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="26" uid="26">
+    <nd ref="421266746"/>
+    <nd ref="421266659"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="27" uid="27">
+    <nd ref="421266659"/>
+    <nd ref="4698081243"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="28" uid="28">
+    <nd ref="4698081243"/>
+    <nd ref="421266698"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="29" uid="29">
+    <nd ref="421266746"/>
+    <nd ref="421266696"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="30" uid="30">
+    <nd ref="421266698"/>
+    <nd ref="421266660"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="31" uid="31">
+    <nd ref="421266700"/>
+    <nd ref="421266661"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="32" uid="32">
+    <nd ref="421266662"/>
+    <nd ref="421266747"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="33" uid="33">
+    <nd ref="421266747"/>
+    <nd ref="421266702"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="34" uid="34">
+    <nd ref="421266669"/>
+    <nd ref="421266748"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="35" uid="35">
+    <nd ref="421266748"/>
+    <nd ref="421266708"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="36" uid="36">
+    <nd ref="421266676"/>
+    <nd ref="421266749"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="37" uid="37">
+    <nd ref="421266749"/>
+    <nd ref="421266719"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="38" uid="38">
+    <nd ref="421266725"/>
+    <nd ref="421266677"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="39" uid="39">
+    <nd ref="421266727"/>
+    <nd ref="421266678"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="40" uid="40">
+    <nd ref="421266730"/>
+    <nd ref="421266679"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="41" uid="41">
+    <nd ref="421266737"/>
+    <nd ref="421266680"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="42" uid="42">
+    <nd ref="421266681"/>
+    <nd ref="421266750"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="43" uid="43">
+    <nd ref="421266750"/>
+    <nd ref="421266738"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="44" uid="44">
+    <nd ref="421266750"/>
     <nd ref="421266751"/>
     <nd ref="421266752"/>
     <nd ref="421266753"/>
@@ -815,26 +902,34 @@
     <nd ref="421266755"/>
     <nd ref="421266756"/>
     <nd ref="421266757"/>
+    <nd ref="421266758"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="45" uid="45">
+    <nd ref="421266758"/>
     <nd ref="421266759"/>
     <nd ref="421266760"/>
     <nd ref="421266761"/>
     <nd ref="421266762"/>
+    <nd ref="421266763"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="46" uid="46">
+    <nd ref="421266764"/>
+    <nd ref="421266763"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="47" uid="47">
+    <nd ref="421266763"/>
+    <nd ref="421266745"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="48" uid="48">
+    <nd ref="421266693"/>
     <nd ref="421266765"/>
     <nd ref="421266766"/>
     <nd ref="421266767"/>
@@ -842,19 +937,23 @@
     <nd ref="421266769"/>
     <nd ref="421266770"/>
     <nd ref="421266771"/>
+    <nd ref="421266691"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="49" uid="49">
+    <nd ref="421266671"/>
     <nd ref="421266773"/>
     <nd ref="421266774"/>
     <nd ref="421266775"/>
     <nd ref="421266776"/>
     <nd ref="421266777"/>
+    <nd ref="421266673"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="50" uid="50">
+    <nd ref="421266665"/>
     <nd ref="7310831048"/>
     <nd ref="421266778"/>
     <nd ref="421266779"/>
@@ -864,52 +963,70 @@
     <nd ref="7310817450"/>
     <nd ref="421266783"/>
     <nd ref="7310817449"/>
+    <nd ref="421266667"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="51" uid="51">
+    <nd ref="421266747"/>
     <nd ref="421266784"/>
     <nd ref="3002932524"/>
     <nd ref="421266785"/>
     <nd ref="421266786"/>
     <nd ref="421266787"/>
+    <nd ref="421266748"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="52" uid="52">
+    <nd ref="421266748"/>
     <nd ref="421266788"/>
     <nd ref="421266789"/>
     <nd ref="421266790"/>
     <nd ref="421266791"/>
     <nd ref="421266792"/>
+    <nd ref="421266749"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="53" uid="53">
+    <nd ref="421266690"/>
+    <nd ref="421266758"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="54" uid="54">
+    <nd ref="421266758"/>
+    <nd ref="421266742"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="55" uid="55">
+    <nd ref="421266764"/>
+    <nd ref="421266695"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="56" uid="56">
+    <nd ref="421266678"/>
+    <nd ref="421266679"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="57" uid="57">
+    <nd ref="421266679"/>
+    <nd ref="421266680"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="58" uid="58">
+    <nd ref="421266680"/>
+    <nd ref="421266681"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="59" uid="59">
+    <nd ref="421266681"/>
     <nd ref="421266682"/>
     <nd ref="421266683"/>
     <nd ref="421266684"/>
@@ -918,36 +1035,51 @@
     <nd ref="421266687"/>
     <nd ref="421266688"/>
     <nd ref="421266689"/>
+    <nd ref="421266690"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="60" uid="60">
+    <nd ref="421266690"/>
+    <nd ref="421266691"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="61" uid="61">
+    <nd ref="421266691"/>
     <nd ref="421266692"/>
+    <nd ref="421266693"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="62" uid="62">
+    <nd ref="421266693"/>
     <nd ref="421266694"/>
+    <nd ref="421266695"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="63" uid="63">
+    <nd ref="421266695"/>
+    <nd ref="421266696"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="64" uid="64">
+    <nd ref="421266696"/>
+    <nd ref="421266658"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="65" uid="65">
+    <nd ref="421266658"/>
+    <nd ref="421266659"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>
   <way id="66" uid="66">
+    <nd ref="4698081244"/>
+    <nd ref="4698081243"/>
     <tag k="highway" v="residential"/>
     <tag k="name" v="Adobe Wells"/>
   </way>

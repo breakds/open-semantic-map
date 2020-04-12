@@ -76,9 +76,6 @@ void SplitRoadHandler::way(const osmium::Way& way) {
   }
 
   for (size_t i = 0; i + 1 < vertex_indices.size(); ++i) {
-    osmium::object_id_type from = way.nodes()[vertex_indices[i]].ref();
-    osmium::object_id_type to   = way.nodes()[vertex_indices[i + 1]].ref();
-
     osmium::builder::WayBuilder builder(output_buffer.get());
     // NOTE: new_way_id is atomic.
     osmium::object_id_type way_id = new_way_id++;
@@ -87,7 +84,7 @@ void SplitRoadHandler::way(const osmium::Way& way) {
     // Add nodes
     {
       osmium::builder::WayNodeListBuilder node_list_builder(builder);
-      for (size_t j = vertex_indices[i] + 1; j < vertex_indices[i + 1]; ++j) {
+      for (size_t j = vertex_indices[i]; j <= vertex_indices[i + 1]; ++j) {
         node_list_builder.add_node_ref(way.nodes()[j]);
       }
     }
