@@ -48,9 +48,9 @@ class NodeLoaderHandler : public osmium::handler::Handler {
   std::unordered_map<osmium::object_id_type, osmium::Location> node_map_;
 };
 
-std::unordered_map<RoadGraph::VertexID, std::reference_wrapper<Vertex>>
-GenerateIdToVertexMap(const std::vector<std::unique_ptr<Vertex>> &vertices) {
-  std::unordered_map<RoadGraph::VertexID, std::reference_wrapper<Vertex>> result;
+std::unordered_map<VertexID, std::reference_wrapper<Vertex>> GenerateIdToVertexMap(
+    const std::vector<std::unique_ptr<Vertex>> &vertices) {
+  std::unordered_map<VertexID, std::reference_wrapper<Vertex>> result;
   for (const std::unique_ptr<Vertex> &vertex : vertices) {
     result.emplace(vertex->id(), *vertex);
   }
@@ -89,9 +89,8 @@ class WayLoaderHandler : public osmium::handler::Handler {
 };
 
 Vertex &QueryVertex(
-    RoadGraph::VertexID id,
-    const std::unordered_map<RoadGraph::VertexID, std::reference_wrapper<Vertex>>
-        &id_to_vertex) {
+    VertexID id,
+    const std::unordered_map<VertexID, std::reference_wrapper<Vertex>> &id_to_vertex) {
   static Vertex INVALID_VERTEX(-1, osmium::Location(0.0, 0.0));
   auto iter = id_to_vertex.find(id);
   if (iter != id_to_vertex.end()) {

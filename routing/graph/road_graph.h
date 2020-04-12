@@ -7,6 +7,7 @@
 
 #include "osmium/osm/types.hpp"
 
+#include "graph/defs.h"
 #include "graph/edge.h"
 #include "graph/vertex.h"
 
@@ -15,9 +16,6 @@ namespace graph {
 
 class RoadGraph {
  public:
-  using VertexID = osmium::object_id_type;
-  using EdgeID   = osmium::object_id_type;
-
   static RoadGraph LoadFromFile(const std::string &path);
 
   RoadGraph(RoadGraph &&) noexcept = default;
