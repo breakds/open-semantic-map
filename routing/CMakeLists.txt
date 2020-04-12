@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 include_directories(${PROJECT_SOURCE_DIR})
+add_compile_options(-Wall -Werror)
 
 # +------------------------------------------------------------+
 # | 3rd Party Dependencies                                     |
@@ -74,6 +75,15 @@ target_link_libraries(
   ${SPDLOG_LIBRARIES}
   Threads::Threads)
 
+add_library(simple_indexer graph/simple_indexer.cc)
+target_link_libraries(
+  simple_indexer
+  road_graph
+  ${BZIP2_LIBRARIES}
+  ${ZLIB_LIBRARIES}
+  ${EXPAT_LIBRARIES}
+  ${SPDLOG_LIBRARIES}
+  Threads::Threads)
 
 # +------------------------------------------------------------+
 # | Targets: Binaries                                          |
@@ -102,6 +112,7 @@ target_include_directories(road_graph_test PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(
   road_graph_test
   road_graph
+  simple_indexer
   gtest_main
   ${GTEST_LIBRARIES})
 set_target_properties(road_graph_test PROPERTIES

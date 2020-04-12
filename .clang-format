@@ -4,7 +4,7 @@ IndentWidth: 2
 ---
 Language: Cpp
 AlignConsecutiveAssignments: true
-AllowShortFunctionsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: true
 AllowShortBlocksOnASingleLine: false
 ColumnLimit: 90
 ---

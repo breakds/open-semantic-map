@@ -1,5 +1,7 @@
 #pragma once
 
+#include "osmium/osm/types.hpp"
+
 namespace open_semap {
 namespace graph {
 

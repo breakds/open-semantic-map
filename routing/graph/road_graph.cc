@@ -1,6 +1,6 @@
 #include "graph/road_graph.h"
 
-#include <utility>
+#include <unordered_map>
 
 #include "osmium/geom/haversine.hpp"
 #include "osmium/handler.hpp"
@@ -17,6 +17,8 @@
 
 namespace open_semap {
 namespace graph {
+
+using VertexMap = std::unordered_map<VertexID, std::reference_wrapper<const Vertex>>;
 
 class NodeLoaderHandler : public osmium::handler::Handler {
  public:
@@ -48,9 +50,8 @@ class NodeLoaderHandler : public osmium::handler::Handler {
   std::unordered_map<osmium::object_id_type, osmium::Location> node_map_;
 };
 
-std::unordered_map<VertexID, std::reference_wrapper<Vertex>> GenerateIdToVertexMap(
-    const std::vector<std::unique_ptr<Vertex>> &vertices) {
-  std::unordered_map<VertexID, std::reference_wrapper<Vertex>> result;
+VertexMap GenerateIdToVertexMap(const std::vector<std::unique_ptr<Vertex>> &vertices) {
+  VertexMap result;
   for (const std::unique_ptr<Vertex> &vertex : vertices) {
     result.emplace(vertex->id(), *vertex);
   }
@@ -58,8 +59,7 @@ std::unordered_map<VertexID, std::reference_wrapper<Vertex>> GenerateIdToVertexM
 }
 
 struct EdgeInfo {
-  EdgeInfo(osmium::object_id_type id_) : id(id_) {
-  }
+  EdgeInfo(osmium::object_id_type id_) : id(id_) {}
 
   osmium::object_id_type id;
   std::vector<osmium::object_id_type> point_ids{};
@@ -76,21 +76,17 @@ class WayLoaderHandler : public osmium::handler::Handler {
     }
   }
 
-  void Reset() {
-    edges_.clear();
-  }
+  void Reset() { edges_.clear(); }
 
-  const std::vector<EdgeInfo> &Edges() const {
-    return edges_;
-  }
+  const std::vector<EdgeInfo> &Edges() const { return edges_; }
 
  private:
   std::vector<EdgeInfo> edges_{};
 };
 
-Vertex &QueryVertex(
-    VertexID id,
-    const std::unordered_map<VertexID, std::reference_wrapper<Vertex>> &id_to_vertex) {
+const Vertex &QueryVertex(
+    VertexID id, const std::unordered_map<VertexID, std::reference_wrapper<const Vertex>>
+                     &id_to_vertex) {
   static Vertex INVALID_VERTEX(-1, osmium::Location(0.0, 0.0));
   auto iter = id_to_vertex.find(id);
   if (iter != id_to_vertex.end()) {
@@ -104,19 +100,22 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
 
   RoadGraph graph;
   std::unordered_map<osmium::object_id_type, osmium::Location> node_map;
+  VertexMap vertex_map;
 
+  // Load nodes (vertices + imtermediate points)
   {
     osmium::io::File input_file(path);
     osmium::io::ReaderWithProgressBar reader(true, input_file,
                                              osmium::osm_entity_bits::node);
     NodeLoaderHandler handler;
     osmium::apply(reader, handler);
-    graph.vertices_     = handler.ReleaseVertices();
-    graph.id_to_vertex_ = GenerateIdToVertexMap(graph.vertices_);
-    node_map            = handler.ReleaseNodeMap();
+    graph.vertices_ = handler.ReleaseVertices();
+    vertex_map      = GenerateIdToVertexMap(graph.vertices_);
+    node_map        = handler.ReleaseNodeMap();
     reader.close();
   }
 
+  // Load ways (edges)
   {
     osmium::io::File input_file(path);
     osmium::io::ReaderWithProgressBar reader(true, input_file,
@@ -134,8 +133,8 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
         }
         // Construct edges and fill edge information in vertices. This
         // exploits the friendship between RoadGraph and Edge/Vertex.
-        Vertex &from = QueryVertex(edge_info.point_ids.front(), graph.id_to_vertex_);
-        Vertex &to   = QueryVertex(edge_info.point_ids.back(), graph.id_to_vertex_);
+        const Vertex &from = QueryVertex(edge_info.point_ids.front(), vertex_map);
+        const Vertex &to   = QueryVertex(edge_info.point_ids.back(), vertex_map);
         if (from.id() == -1 || to.id() == -1) {
           spdlog::critical("Cannot find vertex {} or {}.", edge_info.point_ids.front(),
                            edge_info.point_ids.back());
@@ -158,8 +157,6 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
         graph.edges_.back()->points_.emplace_back(to.loc());
         graph.edges_.back()->length_ +=
             osmium::geom::haversine::distance(prev_loc, to.loc());
-        from.mutable_outwards().emplace_back(*graph.edges_.back());
-        to.mutable_inwards().emplace_back(*graph.edges_.back());
       }
     }
 
@@ -169,17 +166,11 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
   return graph;
 }
 
-const Vertex &RoadGraph::GetVertex(VertexID id) const {
-  return QueryVertex(id, id_to_vertex_);
-}
-
 const std::vector<std::unique_ptr<Vertex>> &RoadGraph::vertices() const {
   return vertices_;
 }
 
-const std::vector<std::unique_ptr<Edge>> &RoadGraph::edges() const {
-  return edges_;
-}
+const std::vector<std::unique_ptr<Edge>> &RoadGraph::edges() const { return edges_; }
 
 }  // namespace graph
 }  // namespace open_semap

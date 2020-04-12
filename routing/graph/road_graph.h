@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 #include "osmium/osm/types.hpp"
@@ -21,8 +20,6 @@ class RoadGraph {
   RoadGraph(RoadGraph &&) noexcept = default;
   RoadGraph &operator=(RoadGraph &&) noexcept = default;
 
-  // Simple Accessors
-  const Vertex &GetVertex(VertexID id) const;
   const std::vector<std::unique_ptr<Vertex>> &vertices() const;
   const std::vector<std::unique_ptr<Edge>> &edges() const;
 
@@ -31,7 +28,6 @@ class RoadGraph {
 
   std::vector<std::unique_ptr<Vertex>> vertices_{};
   std::vector<std::unique_ptr<Edge>> edges_{};
-  std::unordered_map<VertexID, std::reference_wrapper<Vertex>> id_to_vertex_{};
 };
 
 }  // namespace graph
