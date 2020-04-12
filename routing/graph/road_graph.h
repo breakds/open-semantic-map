@@ -7,11 +7,11 @@
 
 #include "osmium/osm/types.hpp"
 
+#include "graph/edge.h"
+#include "graph/vertex.h"
+
 namespace open_semap {
 namespace graph {
-
-class Edge;
-class Vertex;
 
 class RoadGraph {
  public:
@@ -20,8 +20,10 @@ class RoadGraph {
 
   static RoadGraph LoadFromFile(const std::string &path);
 
-  RoadGraph(RoadGraph &&) = default;
-  RoadGraph &operator=(RoadGraph &&) = default;
+  RoadGraph(RoadGraph &&) noexcept = default;
+  RoadGraph &operator=(RoadGraph &&) noexcept = default;
+
+  const Vertex &GetVertex(VertexID id) const;
 
  private:
   friend class Vertex;

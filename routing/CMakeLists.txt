@@ -65,7 +65,7 @@ target_link_libraries(
   ${EXPAT_LIBRARIES}
   Threads::Threads)
 
-add_library(road_graph graph/road_graph.cc)
+add_library(road_graph graph/road_graph.cc graph/edge.cc)
 target_link_libraries(
   road_graph
   ${BZIP2_LIBRARIES}
@@ -98,6 +98,7 @@ file(COPY tests/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/tests)
 configure_file(tests/testdata.h.in tests/testdata.h @ONLY)
 
 add_executable(road_graph_test tests/road_graph_test.cc)
+target_include_directories(road_graph_test PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(
   road_graph_test
   road_graph

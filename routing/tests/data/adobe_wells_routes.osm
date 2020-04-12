@@ -1,0 +1,954 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version="0.6" generator="routing_graph">
+  <bounds minlat="37.39991" minlon="-121.99535" maxlat="37.40311" maxlon="-121.98712"/>
+  <node id="65523117" uid="2644101" lat="37.4034394" lon="-121.9885645">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266657" uid="2644101" lat="37.4032636" lon="-121.9916937">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266658" uid="14293" lat="37.4029455" lon="-121.9916513">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266659" uid="8909" lat="37.4016964" lon="-121.9915645">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266660" uid="14293" lat="37.4029826" lon="-121.9911">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266661" uid="63303" lat="37.4030721" lon="-121.9905522">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266662" uid="8909" lat="37.403105" lon="-121.9900061">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266663" uid="63303" lat="37.4031062" lon="-121.9889643">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266664" uid="33757" lat="37.4030495" lon="-121.9886189">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266665" uid="28775" lat="37.4029294" lon="-121.9882506">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266666" uid="28775" lat="37.4026669" lon="-121.9878547">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266667" uid="6315653" lat="37.4023471" lon="-121.9875753">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266668" uid="28775" lat="37.4020612" lon="-121.9874207">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266669" uid="28775" lat="37.4017609" lon="-121.987366">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266670" uid="28775" lat="37.401321" lon="-121.9874151">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266671" uid="63303" lat="37.4009368" lon="-121.9876231">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266672" uid="63303" lat="37.4007335" lon="-121.987797">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266673" uid="63303" lat="37.4005168" lon="-121.9881367">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266674" uid="63303" lat="37.4003448" lon="-121.9884064">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266675" uid="63303" lat="37.4002562" lon="-121.9888012">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266676" uid="79401" lat="37.4002053" lon="-121.9897947">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266677" uid="79401" lat="37.4001822" lon="-121.9903427">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266678" uid="63303" lat="37.4001488" lon="-121.9908853">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266679" uid="79401" lat="37.4001264" lon="-121.9914381">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266680" uid="63303" lat="37.40009" lon="-121.9919842">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266681" uid="63303" lat="37.4000605" lon="-121.9925339">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266682" uid="63303" lat="37.400038" lon="-121.9929554">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266683" uid="63303" lat="37.4000311" lon="-121.9935648">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266684" uid="63303" lat="37.4001675" lon="-121.9941742">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266685" uid="63303" lat="37.4003993" lon="-121.9946463">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266686" uid="63303" lat="37.4007335" lon="-121.9949381">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266687" uid="63303" lat="37.4010744" lon="-121.9951441">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266688" uid="63303" lat="37.4013744" lon="-121.9951956">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266689" uid="63303" lat="37.4018108" lon="-121.9951613">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266690" uid="28775" lat="37.4022254" lon="-121.9949582">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266691" uid="63303" lat="37.402359" lon="-121.9947895">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266692" uid="63303" lat="37.402513" lon="-121.9946377">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266693" uid="79401" lat="37.4028067" lon="-121.9942094">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266694" uid="63303" lat="37.4028949" lon="-121.9937365">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266695" uid="63303" lat="37.4029221" lon="-121.9927409">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266696" uid="63303" lat="37.4029221" lon="-121.9921744">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266698" uid="8909" lat="37.4017245" lon="-121.9910076">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266699" uid="63303" lat="37.4017426" lon="-121.9906037">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266700" uid="8909" lat="37.4017674" lon="-121.9904677">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266701" uid="79401" lat="37.4018223" lon="-121.9900879">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266702" uid="8909" lat="37.4018831" lon="-121.989912">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266703" uid="79401" lat="37.402061" lon="-121.9895476">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266704" uid="63303" lat="37.4021585" lon="-121.9892218">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266705" uid="63303" lat="37.4020835" lon="-121.9888356">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266706" uid="79401" lat="37.4019217" lon="-121.9886315">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266708" uid="28775" lat="37.4017134" lon="-121.9885376">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266710" uid="79401" lat="37.4014786" lon="-121.9886186">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266713" uid="79401" lat="37.4012821" lon="-121.9887939">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266716" uid="79401" lat="37.4011863" lon="-121.9891642">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266719" uid="8909" lat="37.4014065" lon="-121.9898861">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266722" uid="8909" lat="37.4014476" lon="-121.9901682">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266725" uid="8909" lat="37.4014762" lon="-121.9904333">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266727" uid="8909" lat="37.4014674" lon="-121.9909884">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266730" uid="8909" lat="37.401435" lon="-121.991555">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266736" uid="8909" lat="37.4014051" lon="-121.9918592">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266737" uid="8909" lat="37.4013728" lon="-121.992097">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266738" uid="63303" lat="37.4012312" lon="-121.9926121">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266739" uid="63303" lat="37.4009857" lon="-121.9933159">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266740" uid="79401" lat="37.4010238" lon="-121.9936274">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266741" uid="63303" lat="37.4012585" lon="-121.9939597">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266742" uid="63303" lat="37.4017153" lon="-121.9939854">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266743" uid="79401" lat="37.4019871" lon="-121.993512">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266744" uid="63303" lat="37.4019812" lon="-121.9932387">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266745" uid="63303" lat="37.4018312" lon="-121.9927409">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266746" uid="63303" lat="37.4017153" lon="-121.9921057">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266747" uid="8909" lat="37.4026261" lon="-121.9899721">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266748" uid="28775" lat="37.4017376" lon="-121.9879407">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266749" uid="79401" lat="37.400693" lon="-121.9898204">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266750" uid="63303" lat="37.4005287" lon="-121.9925561">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266751" uid="63303" lat="37.4005357" lon="-121.992655">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266752" uid="63303" lat="37.4005084" lon="-121.9932215">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266753" uid="63303" lat="37.4005357" lon="-121.9936507">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266754" uid="63303" lat="37.4006448" lon="-121.9940627">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266755" uid="63303" lat="37.4009585" lon="-121.9944317">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266756" uid="63303" lat="37.4013335" lon="-121.994612">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266757" uid="28775" lat="37.401707" lon="-121.9946037">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266758" uid="28775" lat="37.4019915" lon="-121.9944631">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266759" uid="63303" lat="37.4021517" lon="-121.9942944">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266760" uid="63303" lat="37.402363" lon="-121.9939425">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266761" uid="63303" lat="37.402438" lon="-121.9935133">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266762" uid="63303" lat="37.4024585" lon="-121.992964">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266763" uid="63303" lat="37.4024585" lon="-121.9927409">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266764" uid="63303" lat="37.402663" lon="-121.9927409">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="421266765" uid="63303" lat="37.4029835" lon="-121.9942944">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266766" uid="63303" lat="37.4030176" lon="-121.9946463">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266767" uid="63303" lat="37.403004" lon="-121.9949725">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266768" uid="63303" lat="37.403004" lon="-121.9950926">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266769" uid="63303" lat="37.4029017" lon="-121.9951184">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266770" uid="63303" lat="37.402738" lon="-121.9951527">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266771" uid="63303" lat="37.4025676" lon="-121.9951012">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266773" uid="63303" lat="37.400788" lon="-121.9873421">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266774" uid="63303" lat="37.4006448" lon="-121.9873507">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266775" uid="63303" lat="37.4005221" lon="-121.9874623">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266776" uid="63303" lat="37.4002834" lon="-121.9878142">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266777" uid="63303" lat="37.4003312" lon="-121.9879687">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266778" uid="6315653" lat="37.4031202" lon="-121.9880625">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266779" uid="6315653" lat="37.4031289" lon="-121.9876668">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266780" uid="6315653" lat="37.4030608" lon="-121.9873836">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266781" uid="6315653" lat="37.4028483" lon="-121.9873364">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266782" uid="6315653" lat="37.4025278" lon="-121.9873365">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266783" uid="6315653" lat="37.4024315" lon="-121.9873908">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266784" uid="79401" lat="37.4026611" lon="-121.9891874">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266785" uid="28775" lat="37.4025076" lon="-121.9885011">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266786" uid="28775" lat="37.4022902" lon="-121.9882004">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266787" uid="28775" lat="37.4020326" lon="-121.9880247">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266788" uid="63303" lat="37.4014017" lon="-121.9879687">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266789" uid="63303" lat="37.4011221" lon="-121.9881403">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266790" uid="63303" lat="37.4008766" lon="-121.9884579">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266791" uid="63303" lat="37.4007335" lon="-121.9888098">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266792" uid="79401" lat="37.4007107" lon="-121.9892982">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="421266917" uid="14293" lat="37.4032825" lon="-121.9911078">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="432032927" uid="79401" lat="37.4014665" lon="-121.9940181">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="432032928" uid="79401" lat="37.4019052" lon="-121.993785">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="432032929" uid="79401" lat="37.4012636" lon="-121.989502">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="1363091918" uid="33757" lat="37.4032092" lon="-121.991694">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="1363092128" uid="14293" lat="37.4030434" lon="-121.9910902">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="3002932524" uid="28775" lat="37.4026241" lon="-121.9888619">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081243" uid="8909" lat="37.4017106" lon="-121.9912819">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="4698081244" uid="8909" lat="37.4014517" lon="-121.9912634">
+    <tag k="junction" v="yes"/>
+    <tag k="vertex" v="yes"/>
+  </node>
+  <node id="4698081284" uid="8909" lat="37.4019999" lon="-121.9933766">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081285" uid="8909" lat="37.4019636" lon="-121.9936475">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081286" uid="8909" lat="37.4018251" lon="-121.993897">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081287" uid="8909" lat="37.4015993" lon="-121.9940177">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081288" uid="8909" lat="37.4013628" lon="-121.9940096">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081889" uid="8909" lat="37.4011263" lon="-121.9938111">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081890" uid="8909" lat="37.4009814" lon="-121.9934732">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081891" uid="8909" lat="37.4012136" lon="-121.9893453">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081892" uid="8909" lat="37.4012094" lon="-121.9889698">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081893" uid="8909" lat="37.4013734" lon="-121.9886908">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081894" uid="8909" lat="37.4015801" lon="-121.9885594">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081895" uid="8909" lat="37.4020084" lon="-121.9887284">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081896" uid="8909" lat="37.4021533" lon="-121.9890288">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081897" uid="8909" lat="37.4021341" lon="-121.9893748">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4698081898" uid="8909" lat="37.4030354" lon="-121.9908688">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4923823378" uid="121721" lat="37.4032338" lon="-121.9911042">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4923823412" uid="33757" lat="37.4031965" lon="-121.9885756">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="4923823413" uid="8446886" lat="37.403389" lon="-121.9885642">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="6505684573" uid="8446886" lat="37.40327" lon="-121.9885676">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="7310817449" uid="6315653" lat="37.4023662" lon="-121.987526">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="7310817450" uid="6315653" lat="37.4024725" lon="-121.9873529">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="7310831048" uid="6315653" lat="37.4029602" lon="-121.9882202">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="7310840704" uid="6315653" lat="37.4034016" lon="-121.9885643">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <node id="7331321963" uid="10480289" lat="37.4018101" lon="-121.9901726">
+    <tag k="junction" v="no"/>
+    <tag k="vertex" v="no"/>
+  </node>
+  <way id="1" uid="1">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="2" uid="2">
+    <nd ref="4698081898"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="3" uid="3">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="4" uid="4">
+    <nd ref="421266663"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="5" uid="5">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="6" uid="6">
+    <nd ref="421266666"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="7" uid="7">
+    <nd ref="421266668"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="8" uid="8">
+    <nd ref="421266670"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="9" uid="9">
+    <nd ref="421266672"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="10" uid="10">
+    <nd ref="421266674"/>
+    <nd ref="421266675"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="11" uid="11">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="12" uid="12">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="13" uid="13">
+    <nd ref="421266699"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="14" uid="14">
+    <nd ref="7331321963"/>
+    <nd ref="421266701"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="15" uid="15">
+    <nd ref="421266703"/>
+    <nd ref="4698081897"/>
+    <nd ref="421266704"/>
+    <nd ref="4698081896"/>
+    <nd ref="421266705"/>
+    <nd ref="4698081895"/>
+    <nd ref="421266706"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="16" uid="16">
+    <nd ref="4698081894"/>
+    <nd ref="421266710"/>
+    <nd ref="4698081893"/>
+    <nd ref="421266713"/>
+    <nd ref="4698081892"/>
+    <nd ref="421266716"/>
+    <nd ref="4698081891"/>
+    <nd ref="432032929"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="17" uid="17">
+    <nd ref="421266722"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="18" uid="18">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="19" uid="19">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="20" uid="20">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="21" uid="21">
+    <nd ref="421266736"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="22" uid="22">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="23" uid="23">
+    <nd ref="421266739"/>
+    <nd ref="4698081890"/>
+    <nd ref="421266740"/>
+    <nd ref="4698081889"/>
+    <nd ref="421266741"/>
+    <nd ref="4698081288"/>
+    <nd ref="432032927"/>
+    <nd ref="4698081287"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="24" uid="24">
+    <nd ref="4698081286"/>
+    <nd ref="432032928"/>
+    <nd ref="4698081285"/>
+    <nd ref="421266743"/>
+    <nd ref="4698081284"/>
+    <nd ref="421266744"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="25" uid="25">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="26" uid="26">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="27" uid="27">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="28" uid="28">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="29" uid="29">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="30" uid="30">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="31" uid="31">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="32" uid="32">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="33" uid="33">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="34" uid="34">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="35" uid="35">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="36" uid="36">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="37" uid="37">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="38" uid="38">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="39" uid="39">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="40" uid="40">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="41" uid="41">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="42" uid="42">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="43" uid="43">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="44" uid="44">
+    <nd ref="421266751"/>
+    <nd ref="421266752"/>
+    <nd ref="421266753"/>
+    <nd ref="421266754"/>
+    <nd ref="421266755"/>
+    <nd ref="421266756"/>
+    <nd ref="421266757"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="45" uid="45">
+    <nd ref="421266759"/>
+    <nd ref="421266760"/>
+    <nd ref="421266761"/>
+    <nd ref="421266762"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="46" uid="46">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="47" uid="47">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="48" uid="48">
+    <nd ref="421266765"/>
+    <nd ref="421266766"/>
+    <nd ref="421266767"/>
+    <nd ref="421266768"/>
+    <nd ref="421266769"/>
+    <nd ref="421266770"/>
+    <nd ref="421266771"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="49" uid="49">
+    <nd ref="421266773"/>
+    <nd ref="421266774"/>
+    <nd ref="421266775"/>
+    <nd ref="421266776"/>
+    <nd ref="421266777"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="50" uid="50">
+    <nd ref="7310831048"/>
+    <nd ref="421266778"/>
+    <nd ref="421266779"/>
+    <nd ref="421266780"/>
+    <nd ref="421266781"/>
+    <nd ref="421266782"/>
+    <nd ref="7310817450"/>
+    <nd ref="421266783"/>
+    <nd ref="7310817449"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="51" uid="51">
+    <nd ref="421266784"/>
+    <nd ref="3002932524"/>
+    <nd ref="421266785"/>
+    <nd ref="421266786"/>
+    <nd ref="421266787"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="52" uid="52">
+    <nd ref="421266788"/>
+    <nd ref="421266789"/>
+    <nd ref="421266790"/>
+    <nd ref="421266791"/>
+    <nd ref="421266792"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="53" uid="53">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="54" uid="54">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="55" uid="55">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="56" uid="56">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="57" uid="57">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="58" uid="58">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="59" uid="59">
+    <nd ref="421266682"/>
+    <nd ref="421266683"/>
+    <nd ref="421266684"/>
+    <nd ref="421266685"/>
+    <nd ref="421266686"/>
+    <nd ref="421266687"/>
+    <nd ref="421266688"/>
+    <nd ref="421266689"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="60" uid="60">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="61" uid="61">
+    <nd ref="421266692"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="62" uid="62">
+    <nd ref="421266694"/>
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="63" uid="63">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="64" uid="64">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="65" uid="65">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+  <way id="66" uid="66">
+    <tag k="highway" v="residential"/>
+    <tag k="name" v="Adobe Wells"/>
+  </way>
+</osm>

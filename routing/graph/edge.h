@@ -3,8 +3,8 @@
 #include <functional>
 #include <vector>
 
-#include "osmium/osm/types.hpp"
 #include "osmium/osm/location.hpp"
+#include "osmium/osm/types.hpp"
 
 namespace open_semap {
 namespace graph {
@@ -13,6 +13,8 @@ class Vertex;
 
 class Edge {
  public:
+  Edge(osmium::object_id_type id, const Vertex &from, const Vertex &to);
+
   inline osmium::object_id_type id() const {
     return id_;
   }
@@ -31,7 +33,7 @@ class Edge {
     return to_.get();
   }
 
- private:
+ public:
   osmium::object_id_type id_;
   std::reference_wrapper<const Vertex> from_;
   std::reference_wrapper<const Vertex> to_;
