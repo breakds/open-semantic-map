@@ -9,8 +9,6 @@
 namespace open_semap {
 namespace graph {
 
-class Edge;
-
 class Vertex {
  public:
   Vertex(osmium::object_id_type id, osmium::Location location) : id_(id), loc_(location) {

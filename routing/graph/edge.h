@@ -15,9 +15,9 @@ class Edge {
  public:
   Edge(osmium::object_id_type id, const Vertex &from, const Vertex &to);
 
-  inline osmium::object_id_type id() const {
-    return id_;
-  }
+  Edge(osmium::object_id_type id, const Vertex &from, const Vertex &to, double length);
+
+  inline osmium::object_id_type id() const { return id_; }
 
   inline double cost() const {
     // FIXME: for routing, we should store the travel time instead of
@@ -25,13 +25,9 @@ class Edge {
     return length_;
   }
 
-  inline const Vertex &from() const {
-    return from_.get();
-  }
+  inline const Vertex &from() const { return from_.get(); }
 
-  inline const Vertex &to() const {
-    return to_.get();
-  }
+  inline const Vertex &to() const { return to_.get(); }
 
  public:
   osmium::object_id_type id_;

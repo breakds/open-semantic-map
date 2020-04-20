@@ -85,6 +85,12 @@ target_link_libraries(
   ${SPDLOG_LIBRARIES}
   Threads::Threads)
 
+add_library(dijkstra algorithms/dijkstra.cc)
+target_link_libraries(
+  dijkstra
+  road_graph
+  simple_indexer)
+
 # +------------------------------------------------------------+
 # | Targets: Binaries                                          |
 # +------------------------------------------------------------+
