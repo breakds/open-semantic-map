@@ -15,6 +15,14 @@ using graph::SimpleIndexer;
 using graph::Vertex;
 using graph::VertexID;
 
+const SearchNode *SearchTree::Find(VertexID vertex_id) const {
+  auto iter = nodes_.find(vertex_id);
+  if (iter == nodes_.end()) {
+    return nullptr;
+  }
+  return &iter->second;
+}
+
 SearchTree RunDijkstra(const SimpleIndexer &indexer, VertexID start,
                        const std::unordered_set<VertexID> &goals) {
   SearchTree tree(start);
@@ -42,7 +50,12 @@ SearchTree RunDijkstra(const SimpleIndexer &indexer, VertexID start,
       std::abort();
     }
 
+    spdlog::debug("Evaluating Vertex {}", current);
+
     for (const auto &edge_ref : conn->outwards) {
+      spdlog::debug("  Check edge {} -> {}", edge_ref.get().from().id(),
+                    edge_ref.get().to().id());
+
       double edge_cost     = edge_ref.get().cost();
       VertexID neighbor_id = edge_ref.get().to().id();
 
@@ -59,6 +72,7 @@ SearchTree RunDijkstra(const SimpleIndexer &indexer, VertexID start,
       if (iter == scoreboard.end() || current_cost + edge_cost < iter->second) {
         double updated_cost     = current_cost + edge_cost;
         scoreboard[neighbor_id] = updated_cost;
+        spdlog::debug("    Update {} with cost {}", neighbor_id, updated_cost);
         // NOTE(breakds) that we lazily add the corresponding SearchNode to the
         // search tree. There may have already been SearchNode with the same ID,
         // but we can be sure that the new SearchNdoe has a better cost, so that
@@ -89,6 +103,8 @@ SearchTree RunDijkstra(const SimpleIndexer &indexer, VertexID start,
         can_continue = true;
         current      = elected.vertex().id();
         current_cost = elected.cost();
+        tree.Emplace(elected);
+        spdlog::debug("  Elected {} with cost {}", current, current_cost);
         break;
       }
     }

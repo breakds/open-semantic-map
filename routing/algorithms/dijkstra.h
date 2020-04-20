@@ -26,7 +26,7 @@ class SearchNode {
 
   const graph::Edge &edge() const { return edge_.get(); }
 
-  bool operator<(const SearchNode &other) const { return cost_ < other.cost_; }
+  bool operator<(const SearchNode &other) const { return cost_ > other.cost_; }
 
  private:
   double cost_;
@@ -42,6 +42,8 @@ class SearchTree {
   }
 
   void Emplace(const SearchNode &node) { nodes_.emplace(node.vertex().id(), node); }
+
+  const SearchNode *Find(graph::VertexID vertex_id) const;
 
  private:
   graph::VertexID start_id_;

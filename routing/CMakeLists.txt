@@ -89,7 +89,8 @@ add_library(dijkstra algorithms/dijkstra.cc)
 target_link_libraries(
   dijkstra
   road_graph
-  simple_indexer)
+  simple_indexer
+  ${SPDLOG_LIBRARIES})
 
 # +------------------------------------------------------------+
 # | Targets: Binaries                                          |
@@ -138,4 +139,12 @@ target_link_libraries(
 set_target_properties(osm_object_test PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY tests)
 
-
+add_executable(dijkstra_test tests/dijkstra_test.cc)
+target_include_directories(dijkstra_test PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_link_libraries(
+  dijkstra_test
+  dijkstra
+  gtest_main
+  ${GTEST_LIBRARIES})
+set_target_properties(dijkstra_test PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY tests)
