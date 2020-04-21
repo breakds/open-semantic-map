@@ -89,4 +89,54 @@ TEST(DijkstraTest, SimpleGraphCase1) {
                          Property(&SearchNode::edge, IsAnEdge(1, 4))));
 }
 
+TEST(DijkstraTest, SimpleGraphCase2Partial) {
+  RoadGraph graph       = CreateSampleGraph();
+  SimpleIndexer indexer = SimpleIndexer::CreateFromRawGraph(graph);
+
+  // Even if we only ask for 2, the algorithm goes far to get 3 and 4
+  // too because they are closer.
+  SearchTree search_tree = RunDijkstra(indexer, 1, {2});
+
+  const SearchNode *n1 = search_tree.Find(1);
+  EXPECT_EQ(nullptr, n1);
+
+  const SearchNode *n2 = search_tree.Find(2);
+  EXPECT_NE(nullptr, n2);
+  EXPECT_THAT(*n2, AllOf(Property(&SearchNode::cost, DoubleEq(15.0)),
+                         Property(&SearchNode::edge, IsAnEdge(1, 2))));
+
+  const SearchNode *n3 = search_tree.Find(3);
+  EXPECT_NE(nullptr, n3);
+  EXPECT_THAT(*n3, AllOf(Property(&SearchNode::cost, DoubleEq(7.0)),
+                         Property(&SearchNode::edge, IsAnEdge(4, 3))));
+
+  const SearchNode *n4 = search_tree.Find(4);
+  EXPECT_NE(nullptr, n4);
+  EXPECT_THAT(*n4, AllOf(Property(&SearchNode::cost, DoubleEq(4.0)),
+                         Property(&SearchNode::edge, IsAnEdge(1, 4))));
+}
+
+TEST(DijkstraTest, SimpleGraphCase2EarlyStop) {
+  RoadGraph graph       = CreateSampleGraph();
+  SimpleIndexer indexer = SimpleIndexer::CreateFromRawGraph(graph);
+
+  // Vertex 4 is going to be finalized first, so that the algorithm
+  // early stops without going on to get 2 and 3.
+  SearchTree search_tree = RunDijkstra(indexer, 1, {4});
+
+  const SearchNode *n1 = search_tree.Find(1);
+  EXPECT_EQ(nullptr, n1);
+
+  const SearchNode *n2 = search_tree.Find(2);
+  EXPECT_EQ(nullptr, n2);
+
+  const SearchNode *n3 = search_tree.Find(3);
+  EXPECT_EQ(nullptr, n3);
+
+  const SearchNode *n4 = search_tree.Find(4);
+  EXPECT_NE(nullptr, n4);
+  EXPECT_THAT(*n4, AllOf(Property(&SearchNode::cost, DoubleEq(4.0)),
+                         Property(&SearchNode::edge, IsAnEdge(1, 4))));
+}
+
 }  // namespace open_semap
