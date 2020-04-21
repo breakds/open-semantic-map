@@ -23,6 +23,7 @@ pkg_check_modules(EXPAT REQUIRED expat)
 pkg_check_modules(GFLAGS REQUIRED gflags)
 pkg_check_modules(SPDLOG REQUIRED spdlog)
 pkg_check_modules(GTEST REQUIRED gtest)
+pkg_check_modules(GMOCK REQUIRED gmock)
 
 # +------------------------------------------------------------+
 # | Targets: Utilities                                         |
@@ -145,6 +146,7 @@ target_link_libraries(
   dijkstra_test
   dijkstra
   gtest_main
+  ${GMOCK_LIBRARIES}
   ${GTEST_LIBRARIES})
 set_target_properties(dijkstra_test PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY tests)

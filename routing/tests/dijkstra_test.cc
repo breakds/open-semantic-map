@@ -25,13 +25,11 @@ using graph::SimpleIndexer;
 using graph::Vertex;
 using graph::VertexID;
 
-// FIXME: Figure out how to add customized matcher in CMake.
-//
-// MATCHER_P2(IsAnEdge, from_id, to_id,
-//            (negation ? std::string("isn't") : std::string("is")) + " an edge " +
-//                std::to_string(from_id) + " -> " + std::to_string(to_id)) {
-//   return arg.from().id() == from_id && arg.to().id() == to_id;
-// }
+MATCHER_P2(IsAnEdge, from_id, to_id,
+           (negation ? std::string("isn't") : std::string("is")) + " an edge " +
+               std::to_string(from_id) + " -> " + std::to_string(to_id)) {
+  return arg.from().id() == from_id && arg.to().id() == to_id;
+}
 
 RoadGraph CreateSampleGraph() {
   std::vector<std::unique_ptr<Vertex>> vertices;
@@ -78,23 +76,17 @@ TEST(DijkstraTest, SimpleGraphCase1) {
   const SearchNode *n2 = search_tree.Find(2);
   EXPECT_NE(nullptr, n2);
   EXPECT_THAT(*n2, AllOf(Property(&SearchNode::cost, DoubleEq(15.0)),
-                         Property(&SearchNode::edge,
-                                  AllOf(Property(&Edge::from, Property(&Vertex::id, 1)),
-                                        Property(&Edge::to, Property(&Vertex::id, 2))))));
+                         Property(&SearchNode::edge, IsAnEdge(1, 2))));
 
   const SearchNode *n3 = search_tree.Find(3);
   EXPECT_NE(nullptr, n3);
   EXPECT_THAT(*n3, AllOf(Property(&SearchNode::cost, DoubleEq(7.0)),
-                         Property(&SearchNode::edge,
-                                  AllOf(Property(&Edge::from, Property(&Vertex::id, 4)),
-                                        Property(&Edge::to, Property(&Vertex::id, 3))))));
+                         Property(&SearchNode::edge, IsAnEdge(4, 3))));
 
   const SearchNode *n4 = search_tree.Find(4);
   EXPECT_NE(nullptr, n4);
   EXPECT_THAT(*n4, AllOf(Property(&SearchNode::cost, DoubleEq(4.0)),
-                         Property(&SearchNode::edge,
-                                  AllOf(Property(&Edge::from, Property(&Vertex::id, 1)),
-                                        Property(&Edge::to, Property(&Vertex::id, 4))))));
+                         Property(&SearchNode::edge, IsAnEdge(1, 4))));
 }
 
 }  // namespace open_semap
