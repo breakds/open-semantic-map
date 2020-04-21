@@ -17,6 +17,9 @@ class Edge {
 
   Edge(osmium::object_id_type id, const Vertex &from, const Vertex &to, double length);
 
+  // Special constructor to create a shortcut edge.
+  Edge(osmium::object_id_type id, const Edge &a, const Edge &b);
+
   inline osmium::object_id_type id() const { return id_; }
 
   inline double cost() const {
@@ -37,6 +40,10 @@ class Edge {
   // participate in the routing algorithm.
   std::vector<osmium::Location> points_{};
   double length_ = 0.0;
+  // points, it stores a pair of edges that makes this shortcut. Use
+  // car and con as a convention from Lisp.
+  const Edge *car = nullptr;
+  const Edge *con = nullptr;
 };
 
 }  // namespace graph
