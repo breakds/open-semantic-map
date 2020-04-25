@@ -42,8 +42,8 @@ class Edge {
   double length_ = 0.0;
   // points, it stores a pair of edges that makes this shortcut. Use
   // car and con as a convention from Lisp.
-  const Edge *car = nullptr;
-  const Edge *con = nullptr;
+  const Edge *car_ = nullptr;
+  const Edge *con_ = nullptr;
 };
 
 }  // namespace graph

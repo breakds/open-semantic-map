@@ -76,6 +76,11 @@ target_link_libraries(
   ${SPDLOG_LIBRARIES}
   Threads::Threads)
 
+add_library(graph_builder graph/builder.cc)
+target_link_libraries(
+  graph_builder
+  road_graph)
+
 add_library(simple_indexer graph/simple_indexer.cc)
 target_link_libraries(
   simple_indexer
@@ -145,6 +150,7 @@ target_include_directories(dijkstra_test PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(
   dijkstra_test
   dijkstra
+  graph_builder
   gtest_main
   ${GMOCK_LIBRARIES}
   ${GTEST_LIBRARIES})
