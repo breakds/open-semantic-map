@@ -31,11 +31,18 @@ TEST(ContractionTest, SingleVertexContraction1) {
   RoadGraph graph = RoadGraphBuilder().AddEdge(1, 2, 5.0).AddEdge(2, 3, 7.0).Build();
   SimpleIndexer indexer = SimpleIndexer::CreateFromRawGraph(graph);
 
+  const Edge *edge12 = indexer.FindEdge(1, 2);
+  const Edge *edge23 = indexer.FindEdge(2, 3);
+
   std::vector<std::unique_ptr<Edge>> shortcuts = ContractGraph({2}, &indexer);
 
+  // The edges should have been removed already by contraction.
+  EXPECT_EQ(nullptr, indexer.FindEdge(1, 2));
+  EXPECT_EQ(nullptr, indexer.FindEdge(2, 3));
+
   EXPECT_THAT(shortcuts,
-              ElementsAre(Pointee(AllOf(Property(&Edge::car, indexer.FindEdge(1, 2)),
-                                        Property(&Edge::cdr, indexer.FindEdge(2, 3))))));
+              ElementsAre(Pointee(AllOf(Property(&Edge::car, edge12),
+                                        Property(&Edge::cdr, edge23)))));
 }
 
 }  // namespace open_semap

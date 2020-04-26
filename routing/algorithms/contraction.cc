@@ -5,6 +5,7 @@
 #include "graph/road_graph.h"
 #include "graph/simple_indexer.h"
 #include "graph/vertex.h"
+#include "spdlog/spdlog.h"
 
 namespace open_semap {
 
@@ -37,12 +38,12 @@ class ContractionProcessor {
     // only the center vertex is going to be contracted.
     for (const auto &incoming : conn->inwards) {
       VertexID start = incoming.get().from().id();
+
       // NOTE(breakds): There is no chance that the outgoing vertices
       // can not be reached from start. This is because any of the
       // starts can at least reach all of the outgoing vertices via
       // center vertex (the input to this function).
-      SearchTree tree = RunDijkstra(indexer_.get(), start, goal_ids);
-
+      SearchTree tree          = RunDijkstra(indexer_.get(), start, goal_ids);
       const SearchNode *center = tree.Find(center_vertex.id());
       // If the center vertex does not even appear in the search tree, no
       // shortcut can be added for this start vertex. Or, if the center vertex

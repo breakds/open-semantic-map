@@ -133,6 +133,7 @@ target_include_directories(road_graph_test PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(
   road_graph_test
   road_graph
+  graph_builder
   simple_indexer
   gtest_main
   ${GTEST_LIBRARIES})
