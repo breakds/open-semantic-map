@@ -12,7 +12,6 @@
 #include "osmium/osm/types.hpp"
 #include "osmium/osm/way.hpp"
 #include "osmium/visitor.hpp"
-
 #include "spdlog/spdlog.h"
 
 namespace open_semap {
@@ -139,7 +138,7 @@ RoadGraph RoadGraph::LoadFromFile(const std::string &path) {
           spdlog::critical("Cannot find vertex {} or {}.", edge_info.point_ids.front(),
                            edge_info.point_ids.back());
         }
-        graph.edges_.emplace_back(std::make_unique<Edge>(edge_info.id, from, to));
+        graph.edges_.emplace_back(std::make_unique<Edge>(from, to));
         graph.edges_.back()->points_.emplace_back(from.loc());
 
         osmium::Location prev_loc = from.loc();

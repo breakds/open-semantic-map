@@ -19,8 +19,7 @@ static auto AddVertexIfNotExist(VertexID id,
 RoadGraphBuilder &RoadGraphBuilder::AddEdge(VertexID from, VertexID to, double length) {
   const Vertex &a = AddVertexIfNotExist(from, &vertices_);
   const Vertex &b = AddVertexIfNotExist(to, &vertices_);
-  EdgeID edge_id  = static_cast<EdgeID>(edges_.size());
-  edges_.emplace_back(std::make_unique<Edge>(edge_id, a, b, length));
+  edges_.emplace_back(std::make_unique<Edge>(a, b, length));
   return *this;
 }
 

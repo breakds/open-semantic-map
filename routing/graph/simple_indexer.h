@@ -38,6 +38,8 @@ class SimpleIndexer {
   // vertex of the input ID cannot be found.
   const ConnectionInfo *Find(VertexID vertex_id) const;
 
+  const Edge *FindEdge(VertexID from, VertexID to) const;
+
   // ==================== Mutable APIs ====================
 
   ConnectionInfo *FindMutable(VertexID vertex_id);
@@ -47,6 +49,8 @@ class SimpleIndexer {
   // Returns false if it cannot find the from and to vertices'
   // corresponding connections already in the indexer.
   bool AddEdge(const Edge &edge);
+
+  void RemoveVertex(VertexID vertex_id);
 
  private:
   std::unordered_map<VertexID, std::unique_ptr<ConnectionInfo>> connections_{};

@@ -98,6 +98,14 @@ target_link_libraries(
   simple_indexer
   ${SPDLOG_LIBRARIES})
 
+add_library(contraction algorithms/contraction.cc)
+target_link_libraries(
+  contraction
+  dijkstra
+  road_graph
+  simple_indexer
+  ${SPDLOG_LIBRARIES})
+
 # +------------------------------------------------------------+
 # | Targets: Binaries                                          |
 # +------------------------------------------------------------+
@@ -156,3 +164,16 @@ target_link_libraries(
   ${GTEST_LIBRARIES})
 set_target_properties(dijkstra_test PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY tests)
+
+add_executable(contraction_test tests/contraction_test.cc)
+target_include_directories(contraction_test PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+target_link_libraries(
+  contraction_test
+  contraction
+  graph_builder
+  gtest_main
+  ${GMOCK_LIBRARIES}
+  ${GTEST_LIBRARIES})
+set_target_properties(contraction_test PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY tests)
+
