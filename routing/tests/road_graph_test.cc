@@ -15,6 +15,12 @@ using ::testing::Property;
 namespace open_semap {
 namespace testing {
 
+MATCHER_P2(IsAnEdgeRef, from_id, to_id,
+           (negation ? std::string("isn't") : std::string("is")) + " an edge ref " +
+               std::to_string(from_id) + " -> " + std::to_string(to_id)) {
+  return arg.get().from().id() == from_id && arg.get().to().id() == to_id;
+}
+
 TEST(RoadGraphTest, LoadGraphAndIndexing) {
   graph::RoadGraph graph = graph::RoadGraph::LoadFromFile(std::string(TEST_DATA_PATH) +
                                                           "/adobe_wells_routes.osm");
@@ -62,6 +68,54 @@ TEST(SimpleIndexerTest, FindEdge) {
                                .Build();
   graph::SimpleIndexer indexer = graph::SimpleIndexer::CreateFromRawGraph(graph);
   EXPECT_NE(nullptr, indexer.FindEdge(1, 2));
+}
+
+TEST(SimpleIndexerTest, RemoveVertex) {
+  graph::RoadGraph graph = graph::RoadGraphBuilder()
+                               .AddEdge(1, 2, 15.0)
+                               .AddEdge(2, 3, 10.0)
+                               .AddEdge(2, 4, 7.0)
+                               .Build();
+  graph::SimpleIndexer indexer = graph::SimpleIndexer::CreateFromRawGraph(graph);
+
+  // Before Remove node 2
+  {
+    const auto *conn1 = indexer.Find(1);
+    EXPECT_THAT(conn1->inwards, ElementsAre());
+    EXPECT_THAT(conn1->outwards, ElementsAre(IsAnEdgeRef(1, 2)));
+
+    const auto *conn2 = indexer.Find(2);
+    EXPECT_THAT(conn2->inwards, ElementsAre(IsAnEdgeRef(1, 2)));
+    EXPECT_THAT(conn2->outwards, ElementsAre(IsAnEdgeRef(2, 3), IsAnEdgeRef(2, 4)));
+
+    const auto *conn3 = indexer.Find(3);
+    EXPECT_THAT(conn3->inwards, ElementsAre(IsAnEdgeRef(2, 3)));
+    EXPECT_THAT(conn3->outwards, ElementsAre());
+
+    const auto *conn4 = indexer.Find(4);
+    EXPECT_THAT(conn4->inwards, ElementsAre(IsAnEdgeRef(2, 4)));
+    EXPECT_THAT(conn4->outwards, ElementsAre());
+  }
+
+  indexer.RemoveVertex(2);
+
+  // After Remove node 2
+  {
+    const auto *conn1 = indexer.Find(1);
+    EXPECT_THAT(conn1->inwards, ElementsAre());
+    EXPECT_THAT(conn1->outwards, ElementsAre());
+
+    const auto *conn2 = indexer.Find(2);
+    EXPECT_EQ(nullptr, conn2);
+
+    const auto *conn3 = indexer.Find(3);
+    EXPECT_THAT(conn3->inwards, ElementsAre());
+    EXPECT_THAT(conn3->outwards, ElementsAre());
+
+    const auto *conn4 = indexer.Find(4);
+    EXPECT_THAT(conn4->inwards, ElementsAre());
+    EXPECT_THAT(conn4->outwards, ElementsAre());
+  }
 }
 
 }  // namespace testing

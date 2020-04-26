@@ -73,24 +73,28 @@ void SimpleIndexer::RemoveVertex(VertexID vertex_id) {
       continue;
     }
 
-    std::remove_if(conn->outwards.begin(), conn->outwards.end(),
-                   [vertex_id](const std::reference_wrapper<const Edge> &e) -> bool {
-                     return e.get().to().id() == vertex_id;
-                   });
+    conn->outwards.erase(
+        std::remove_if(conn->outwards.begin(), conn->outwards.end(),
+                       [vertex_id](const std::reference_wrapper<const Edge> &e) -> bool {
+                         return e.get().to().id() == vertex_id;
+                       }),
+        conn->outwards.end());
   }
 
   for (const auto &edge : iter->second->outwards) {
-    VertexID to_id       = edge.get().from().id();
+    VertexID to_id       = edge.get().to().id();
     ConnectionInfo *conn = FindMutable(to_id);
 
     if (conn == nullptr) {
       continue;
     }
 
-    std::remove_if(conn->inwards.begin(), conn->inwards.end(),
-                   [vertex_id](const std::reference_wrapper<const Edge> &e) -> bool {
-                     return e.get().from().id() == vertex_id;
-                   });
+    conn->inwards.erase(
+        std::remove_if(conn->inwards.begin(), conn->inwards.end(),
+                       [vertex_id](const std::reference_wrapper<const Edge> &e) -> bool {
+                         return e.get().from().id() == vertex_id;
+                       }),
+        conn->inwards.end());
   }
 
   connections_.erase(iter);
