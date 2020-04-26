@@ -62,6 +62,8 @@ class ContractionProcessor {
           // In this case, start -> center -> goal appear in the Dijkstra search
           // tree, suggesting a valid contraction.
           shortcuts_.emplace_back(std::make_unique<Edge>(center->edge(), goal->edge()));
+          // NOTE(breakds): This may coexist with the origianl
+          // non-shortcut edge.
           indexer_.get().AddEdge(*shortcuts_.back());
         }
       }
@@ -69,7 +71,6 @@ class ContractionProcessor {
 
     // Now, it is time to remove the center vertex from the indexer.
     indexer_.get().RemoveVertex(center_vertex.id());
-
     return shortcuts_.size() - num_existing_shortcuts;
   }
 

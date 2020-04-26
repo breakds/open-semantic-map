@@ -136,6 +136,7 @@ target_link_libraries(
   graph_builder
   simple_indexer
   gtest_main
+  ${GMOCK_LIBRARIES}  
   ${GTEST_LIBRARIES})
 set_target_properties(road_graph_test PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY tests)
