@@ -30,6 +30,28 @@ MATCHER_P2(IsAnEdge, from_id, to_id,
   return arg.from().id() == from_id && arg.to().id() == to_id;
 }
 
+RoadGraph CreateTrivialGraph() {
+  return graph::RoadGraphBuilder().AddEdge(1, 2, 5.0).AddEdge(2, 3, 7.0).Build();
+}
+
+TEST(DijkstraTest, TrivialGraph1) {
+  RoadGraph graph       = CreateTrivialGraph();
+  SimpleIndexer indexer = SimpleIndexer::CreateFromRawGraph(graph);
+
+  SearchTree search_tree = RunDijkstra(indexer, 1, {3});
+
+  const SearchNode *n1 = search_tree.Find(1);
+  EXPECT_EQ(nullptr, n1);
+
+  const SearchNode *n2 = search_tree.Find(2);
+  EXPECT_THAT(*n2, AllOf(Property(&SearchNode::cost, DoubleEq(5.0)),
+                         Property(&SearchNode::edge, IsAnEdge(1, 2))));
+
+  const SearchNode *n3 = search_tree.Find(3);
+  EXPECT_THAT(*n3, AllOf(Property(&SearchNode::cost, DoubleEq(12.0)),
+                         Property(&SearchNode::edge, IsAnEdge(2, 3))));
+}
+
 RoadGraph CreateSampleGraph() {
   return graph::RoadGraphBuilder()
       .AddEdge(1, 2, 15.0)

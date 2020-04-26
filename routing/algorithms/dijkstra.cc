@@ -121,7 +121,7 @@ SearchTree RunDijkstra(const SimpleIndexer &indexer, VertexID start,
       }
     }
 
-  } while (!q.empty());
+  } while (true);
 
   return tree;
 }

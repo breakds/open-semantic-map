@@ -1,9 +1,9 @@
 #include "graph/road_graph.h"
-#include "graph/simple_indexer.h"
 
 #include "gmock/gmock.h"
+#include "graph/builder.h"
+#include "graph/simple_indexer.h"
 #include "gtest/gtest.h"
-
 #include "tests/testdata.h"
 
 using ::testing::AllOf;
@@ -48,6 +48,20 @@ TEST(RoadGraphTest, LoadGraphAndIndexing) {
           AllOf(Property(&graph::Edge::from, Property(&graph::Vertex::id, 421266698)),
                 Property(&graph::Edge::to, Property(&graph::Vertex::id, 421266660)),
                 Property(&graph::Edge::cost, DoubleNear(140.172, 1e-3)))));
+}
+
+TEST(SimpleIndexerTest, FindEdge) {
+  graph::RoadGraph graph = graph::RoadGraphBuilder()
+                               .AddEdge(1, 2, 15.0)
+                               .AddEdge(1, 3, 10.0)
+                               .AddEdge(1, 4, 4.0)
+                               .AddEdge(3, 1, 10.0)
+                               .AddEdge(2, 3, 7.0)
+                               .AddEdge(2, 4, 7.0)
+                               .AddEdge(4, 3, 3.0)
+                               .Build();
+  graph::SimpleIndexer indexer = graph::SimpleIndexer::CreateFromRawGraph(graph);
+  EXPECT_NE(nullptr, indexer.FindEdge(1, 2));
 }
 
 }  // namespace testing
