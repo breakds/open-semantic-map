@@ -1,5 +1,7 @@
 #include "algorithms/contraction.h"
 
+#include <algorithm>
+
 #include "algorithms/dijkstra.h"
 #include "graph/edge.h"
 #include "graph/road_graph.h"
@@ -52,34 +54,31 @@ struct SingleContractionPlan {
   //
   // This equals to # added shortcuts - # original edges. Note that the number
   // can be negative.
-  int64_t EdgeDifference() const {
+  double ComputeEdgeDifference() const {
     if (center == nullptr) {
       return 0;
     }
-    return static_cast<int64_t>(planned.size()) -
-           static_cast<int64_t>(center->inwards.size() + center->outwards.size());
+    return static_cast<double>(planned.size()) -
+           static_cast<double>(center->inwards.size() + center->outwards.size());
   }
 };
 
 static SingleContractionPlan DryRunContraction(const SimpleIndexer &indexer,
-                                               VertexID center_vertex_id) {
-  const ConnectionInfo *conn = indexer.Find(center_vertex_id);
-  if (conn == nullptr) {
-    return SingleContractionPlan();
-  }
+                                               const ConnectionInfo &conn) {
+  VertexID center_vertex_id = conn.vertex.get().id();
 
   SingleContractionPlan plan;
-  plan.center = conn;
+  plan.center = &conn;
 
   std::unordered_set<graph::VertexID> goal_ids;
-  for (const auto &outgoing : conn->outwards) {
+  for (const auto &outgoing : conn.outwards) {
     goal_ids.emplace(outgoing.get().to().id());
   }
 
   // Going over all the vertices on the start side, and run Dijkstra to try to
   // reach the vertices on the other side. All the shortest path that uses
   // only the center vertex is going to be contracted.
-  for (const auto &incoming : conn->inwards) {
+  for (const auto &incoming : conn.inwards) {
     VertexID start = incoming.get().from().id();
 
     // NOTE(breakds): There is no chance that the outgoing vertices
@@ -117,11 +116,55 @@ std::vector<std::unique_ptr<Edge>> ContractVertices(
   std::vector<std::unique_ptr<Edge>> shortcuts;
 
   for (VertexID id : ordered_vertex_ids) {
-    SingleContractionPlan plan = DryRunContraction(*indexer, id);
-    plan.CarryOut(indexer, &shortcuts);
+    const ConnectionInfo *conn = indexer->Find(id);
+    if (conn != nullptr) {
+      SingleContractionPlan plan = DryRunContraction(*indexer, *conn);
+      plan.CarryOut(indexer, &shortcuts);
+    }
   }
 
   return shortcuts;
+}
+
+struct RankingInfo {
+  const ConnectionInfo *conn = nullptr;
+  double score               = 0.0;
+};
+
+std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *indexer) {
+  // The owner of the created shortcuts. Will be returned and
+  // transferred to the caller.
+  std::vector<std::unique_ptr<Edge>> shortcuts;
+
+  // A priority queue that ranks the remaining vertices by their
+  // score. It gives the next vertex to contract.
+  //
+  // FIXME: In the future we might want to do partial ranking to avoid
+  // rank every vertex together and save the memory.
+  std::vector<RankingInfo> rankings;
+  rankings.reserve(indexer->connections.size());
+
+  // Initialize the rankings with the edege difference of each vertex.
+  for (const auto &item : indexer->connections()) {
+    const ConnectionInfo &conn = *item.second;
+    SingleContractionPlan plan = DryRunContraction(*indexer, conn);
+    rankings.emplace_back(conn.vertex.get().id(), plan.ComputeEdgeDifference());
+  }
+  std::make_heap(rankings.begin(), rankings.end());
+
+  while (!rankings.empty()) {
+    std::pop_heap(rankings.begin(), rankings.end());
+    const ConnectionInfo *conn = rankings.back().conn;
+    double current_score       = rankings.back().score;
+    rankings.pop_back();
+
+    if (PLACEHOLDER_SCORE_IS_OUTDATED) {
+      // ...
+      continue;
+    }
+
+    SingleContractionPlan plan = DryRunContraction(*indexer, *conn);
+  }
 }
 
 }  // namespace open_semap
