@@ -62,8 +62,8 @@ struct SingleContractionPlan {
 };
 
 static SingleContractionPlan DryRunContraction(const SimpleIndexer &indexer,
-                                               const graph::Vertex &center_vertex) {
-  const ConnectionInfo *conn = indexer.Find(center_vertex.id());
+                                               VertexID center_vertex_id) {
+  const ConnectionInfo *conn = indexer.Find(center_vertex_id);
   if (conn == nullptr) {
     return SingleContractionPlan();
   }
@@ -87,7 +87,7 @@ static SingleContractionPlan DryRunContraction(const SimpleIndexer &indexer,
     // starts can at least reach all of the outgoing vertices via
     // center vertex (the input to this function).
     SearchTree tree          = RunDijkstra(indexer, start, goal_ids);
-    const SearchNode *center = tree.Find(center_vertex.id());
+    const SearchNode *center = tree.Find(center_vertex_id);
     // If the center vertex does not even appear in the search tree, no
     // shortcut can be added for this start vertex. Or, if the center vertex
     // isn't directly reached by the start vertex, no shortcut as well.
@@ -101,7 +101,7 @@ static SingleContractionPlan DryRunContraction(const SimpleIndexer &indexer,
       if (goal == nullptr) {
         continue;
       }
-      if (goal->edge().from().id() == center_vertex.id()) {
+      if (goal->edge().from().id() == center_vertex_id) {
         // In this case, start -> center -> goal appear in the Dijkstra search
         // tree, suggesting a valid shortcut.
         plan.planned.emplace_back(center->edge(), goal->edge());
@@ -113,29 +113,15 @@ static SingleContractionPlan DryRunContraction(const SimpleIndexer &indexer,
 }
 
 std::vector<std::unique_ptr<Edge>> ContractGraph(
-    const std::vector<std::reference_wrapper<const Vertex>> &ordered_vertices,
-    SimpleIndexer *indexer) {
+    const std::vector<graph::VertexID> &ordered_vertex_ids, SimpleIndexer *indexer) {
   std::vector<std::unique_ptr<Edge>> shortcuts;
 
-  for (const auto &vertex : ordered_vertices) {
-    SingleContractionPlan plan = DryRunContraction(*indexer, vertex.get());
+  for (VertexID id : ordered_vertex_ids) {
+    SingleContractionPlan plan = DryRunContraction(*indexer, id);
     plan.CarryOut(indexer, &shortcuts);
   }
 
   return shortcuts;
-}
-
-std::vector<std::unique_ptr<Edge>> ContractGraph(
-    const std::vector<graph::VertexID> &ordered_vertex_ids, SimpleIndexer *indexer) {
-  std::vector<std::reference_wrapper<const Vertex>> ordered_vertices;
-  for (VertexID id : ordered_vertex_ids) {
-    const ConnectionInfo *conn = indexer->Find(id);
-    if (conn == nullptr) {
-      return {};
-    }
-    ordered_vertices.emplace_back(conn->vertex);
-  }
-  return ContractGraph(ordered_vertices, indexer);
 }
 
 }  // namespace open_semap
