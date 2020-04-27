@@ -20,7 +20,7 @@ class Vertex;
 // Contract the graph based on the Contraction Hierarchies algorithm. The order
 // of contraction is given. The algorithm will generate shortcuts when each
 // vertex is contracted, and the generated shortcuts will be returned.
-std::vector<std::unique_ptr<graph::Edge>> ContractGraph(
+std::vector<std::unique_ptr<graph::Edge>> ContractVertices(
     const std::vector<graph::VertexID> &ordered_vertex_ids,
     graph::SimpleIndexer *indexer);
 

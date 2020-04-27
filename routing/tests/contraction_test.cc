@@ -35,7 +35,7 @@ TEST(ContractionTest, SingleVertexContraction1) {
   const Edge *edge12 = indexer.FindEdge(1, 2);
   const Edge *edge23 = indexer.FindEdge(2, 3);
 
-  std::vector<std::unique_ptr<Edge>> shortcuts = ContractGraph({2}, &indexer);
+  std::vector<std::unique_ptr<Edge>> shortcuts = ContractVertices({2}, &indexer);
 
   // The edges should have been removed already by contraction.
   EXPECT_EQ(nullptr, indexer.FindEdge(1, 2));
@@ -78,7 +78,7 @@ TEST(ContractionTest, PaperExampleMultiStep) {
     const Edge *edge41 = indexer.FindEdge(4, 1);
     const Edge *edge14 = indexer.FindEdge(1, 4);
 
-    std::vector<std::unique_ptr<Edge>> added = ContractGraph({1}, &indexer);
+    std::vector<std::unique_ptr<Edge>> added = ContractVertices({1}, &indexer);
 
     EXPECT_EQ(nullptr, indexer.FindEdge(6, 1));
     EXPECT_EQ(nullptr, indexer.FindEdge(1, 6));
@@ -99,7 +99,7 @@ TEST(ContractionTest, PaperExampleMultiStep) {
 
   {
     // Node 2 does not contract.
-    std::vector<std::unique_ptr<Edge>> added = ContractGraph({2}, &indexer);
+    std::vector<std::unique_ptr<Edge>> added = ContractVertices({2}, &indexer);
     EXPECT_EQ(nullptr, indexer.Find(2));
     ASSERT_EQ(0, added.size());
   }
@@ -111,7 +111,7 @@ TEST(ContractionTest, PaperExampleMultiStep) {
     const Edge *edge35 = indexer.FindEdge(3, 5);
     const Edge *edge53 = indexer.FindEdge(5, 3);
 
-    std::vector<std::unique_ptr<Edge>> added = ContractGraph({3}, &indexer);
+    std::vector<std::unique_ptr<Edge>> added = ContractVertices({3}, &indexer);
 
     EXPECT_EQ(nullptr, indexer.FindEdge(4, 3));
     EXPECT_EQ(nullptr, indexer.FindEdge(3, 4));
@@ -137,7 +137,7 @@ TEST(ContractionTest, PaperExampleMultiStep) {
     const Edge *edge54 = indexer.FindEdge(5, 4);
     const Edge *edge46 = indexer.FindEdge(4, 6);
 
-    std::vector<std::unique_ptr<Edge>> added = ContractGraph({4}, &indexer);
+    std::vector<std::unique_ptr<Edge>> added = ContractVertices({4}, &indexer);
 
     EXPECT_EQ(nullptr, indexer.FindEdge(6, 4));
     EXPECT_EQ(nullptr, indexer.FindEdge(4, 5));
@@ -158,7 +158,7 @@ TEST(ContractionTest, PaperExampleMultiStep) {
 
   {
     // Node 5 does not contract.
-    std::vector<std::unique_ptr<Edge>> added = ContractGraph({5}, &indexer);
+    std::vector<std::unique_ptr<Edge>> added = ContractVertices({5}, &indexer);
     EXPECT_EQ(nullptr, indexer.Find(5));
     ASSERT_EQ(0, added.size());
   }
@@ -168,7 +168,8 @@ TEST(ContractionTest, PaperExampleOneBatch) {
   RoadGraph graph       = MakePaperExampleGraph();
   SimpleIndexer indexer = SimpleIndexer::CreateFromRawGraph(graph);
 
-  std::vector<std::unique_ptr<Edge>> shortcuts = ContractGraph({1, 2, 3, 4, 5}, &indexer);
+  std::vector<std::unique_ptr<Edge>> shortcuts =
+      ContractVertices({1, 2, 3, 4, 5}, &indexer);
 
   EXPECT_EQ(6, shortcuts.size());
 }

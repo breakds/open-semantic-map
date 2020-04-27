@@ -112,7 +112,7 @@ static SingleContractionPlan DryRunContraction(const SimpleIndexer &indexer,
   return plan;
 }
 
-std::vector<std::unique_ptr<Edge>> ContractGraph(
+std::vector<std::unique_ptr<Edge>> ContractVertices(
     const std::vector<graph::VertexID> &ordered_vertex_ids, SimpleIndexer *indexer) {
   std::vector<std::unique_ptr<Edge>> shortcuts;
 
