@@ -1,6 +1,9 @@
 #include "algorithms/contraction.h"
 
 #include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
 
 #include "algorithms/dijkstra.h"
 #include "graph/edge.h"
@@ -126,10 +129,39 @@ std::vector<std::unique_ptr<Edge>> ContractVertices(
   return shortcuts;
 }
 
+static constexpr double SIGNIFICANT_SCORE_DIFF  = 0.5;
+static constexpr double ANTI_CLUSTERING_PENALTY = 0.4;
+
 struct RankingInfo {
+  RankingInfo(const ConnectionInfo *conn_, double edge_diff_, double extra_)
+      : conn(conn_), edge_diff(edge_diff_), extra(extra_) {}
+
+  RankingInfo(const ConnectionInfo *conn_, double edge_diff_)
+      : conn(conn_), edge_diff(edge_diff_) {}
+
+  RankingInfo(const RankingInfo &) = default;
+
+  inline double score() const { return edge_diff + extra; }
+
+  inline bool operator<(const RankingInfo &other) const {
+    return score() > other.score();
+  }
+
   const ConnectionInfo *conn = nullptr;
-  double score               = 0.0;
-};
+  double edge_diff           = 0.0;
+  double extra               = 0.0;
+};  // namespace open_semap
+
+void FetchNeighborVertexIDs(const ConnectionInfo &conn,
+                            std::vector<VertexID> *neighbors) {
+  neighbors->clear();
+  for (const auto &item : conn.inwards) {
+    neighbors->emplace_back(item.get().from().id());
+  }
+  for (const auto &item : conn.outwards) {
+    neighbors->emplace_back(item.get().to().id());
+  }
+}
 
 std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *indexer) {
   // The owner of the created shortcuts. Will be returned and
@@ -142,29 +174,72 @@ std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *in
   // FIXME: In the future we might want to do partial ranking to avoid
   // rank every vertex together and save the memory.
   std::vector<RankingInfo> rankings;
-  rankings.reserve(indexer->connections.size());
+  rankings.reserve(indexer->connections().size());
+
+  // Unlike `rankings`, scoreboard is not a priority queue. However,
+  // it has better up-to-date information than in the priority queue.
+  // When a vertex is contracted, its neighbors will be updated (with
+  // a worse score). The updated score will only be in the scoreboard,
+  // but not in the `rankings` (because updating the heap is costly).
+  // However, when a vertex is popped from the heap, it will have to
+  // be compared with the scoreboard.
+  std::unordered_map<VertexID, RankingInfo> scoreboard;
 
   // Initialize the rankings with the edege difference of each vertex.
   for (const auto &item : indexer->connections()) {
-    const ConnectionInfo &conn = *item.second;
-    SingleContractionPlan plan = DryRunContraction(*indexer, conn);
-    rankings.emplace_back(conn.vertex.get().id(), plan.ComputeEdgeDifference());
+    const ConnectionInfo *conn = item.second.get();
+    SingleContractionPlan plan = DryRunContraction(*indexer, *conn);
+    double edge_diff           = plan.ComputeEdgeDifference();
+    rankings.emplace_back(conn, edge_diff);
+    scoreboard.emplace(std::piecewise_construct,
+                       std::forward_as_tuple(conn->vertex.get().id()),
+                       std::forward_as_tuple(conn, edge_diff));
   }
   std::make_heap(rankings.begin(), rankings.end());
 
+  std::vector<VertexID> neighbors;
+
   while (!rankings.empty()) {
     std::pop_heap(rankings.begin(), rankings.end());
-    const ConnectionInfo *conn = rankings.back().conn;
-    double current_score       = rankings.back().score;
+    VertexID center_vertex_id = rankings.back().conn->vertex.get().id();
+    double current_score      = rankings.back().score();
     rankings.pop_back();
 
-    if (PLACEHOLDER_SCORE_IS_OUTDATED) {
-      // ...
+    auto center_iter = scoreboard.find(center_vertex_id);
+    if (center_iter == scoreboard.end()) {
+      spdlog::critical(
+          "ContractGraph: Vertex {} is not contracted but cannot be found in scoreboard.",
+          center_vertex_id);
+    }
+
+    if (current_score + SIGNIFICANT_SCORE_DIFF < center_iter->second.score()) {
+      rankings.emplace_back(center_iter->second);
+      std::push_heap(rankings.begin(), rankings.end());
       continue;
     }
 
-    SingleContractionPlan plan = DryRunContraction(*indexer, *conn);
+    FetchNeighborVertexIDs(*center_iter->second.conn, &neighbors);
+
+    SingleContractionPlan plan = DryRunContraction(*indexer, *center_iter->second.conn);
+    plan.CarryOut(indexer, &shortcuts);
+    scoreboard.erase(center_vertex_id);
+
+    // Now, update all the neighbors as center is now gone since the
+    // plan is carried out.
+    for (VertexID neighbor_id : neighbors) {
+      auto item = scoreboard.find(neighbor_id);
+      if (item == scoreboard.end()) {
+        spdlog::warn("ContractGraph: The neighbor {} of {} is already gone.", neighbor_id,
+                     center_vertex_id);
+        continue;
+      }
+      item->second.extra += ANTI_CLUSTERING_PENALTY;
+      SingleContractionPlan new_plan = DryRunContraction(*indexer, *item->second.conn);
+      item->second.edge_diff         = new_plan.ComputeEdgeDifference();
+    }
   }
+
+  return shortcuts;
 }
 
 }  // namespace open_semap
