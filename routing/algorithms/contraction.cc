@@ -163,7 +163,14 @@ void FetchNeighborVertexIDs(const ConnectionInfo &conn,
   }
 }
 
-std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *indexer) {
+std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *indexer,
+                                                        bool print_debug_info) {
+  if (print_debug_info && indexer->connections().size() > 20) {
+    spdlog::warn(
+        "ContractGraph: You asked to print debug info but the graph is too big to do "
+        "so. Will ignore 'print_debug_info'.");
+  }
+
   // The owner of the created shortcuts. Will be returned and
   // transferred to the caller.
   std::vector<std::unique_ptr<Edge>> shortcuts;
@@ -205,6 +212,13 @@ std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *in
     double current_score      = rankings.back().score();
     rankings.pop_back();
 
+    if (print_debug_info) {
+      spdlog::info("Contracting Vertex {}", center_vertex_id);
+      for (const auto &entry : scoreboard) {
+        spdlog::info("  - {}: {}", entry.first, entry.second.score());
+      }
+    }
+
     auto center_iter = scoreboard.find(center_vertex_id);
     if (center_iter == scoreboard.end()) {
       spdlog::critical(
@@ -212,7 +226,15 @@ std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *in
           center_vertex_id);
     }
 
-    if (current_score + SIGNIFICANT_SCORE_DIFF < center_iter->second.score()) {
+    if (current_score + SIGNIFICANT_SCORE_DIFF < center_iter->second.score() &&
+        // If there are only 2 or less vertices left (ranking's size
+        // would be 1), do not do the update trick as the localization
+        // heuristic won't work anyway.
+        rankings.size() > 1) {
+      if (print_debug_info) {
+        spdlog::info("  Re-insert vertex {} with worse score {}.", center_vertex_id,
+                     center_iter->second.score());
+      }
       rankings.emplace_back(center_iter->second);
       std::push_heap(rankings.begin(), rankings.end());
       continue;
@@ -222,6 +244,10 @@ std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *in
 
     SingleContractionPlan plan = DryRunContraction(*indexer, *center_iter->second.conn);
     plan.CarryOut(indexer, &shortcuts);
+    if (print_debug_info) {
+      spdlog::info("  Carry out plan on vertex {}. There are {} shortcuts now.",
+                   center_vertex_id, shortcuts.size());
+    }
     scoreboard.erase(center_vertex_id);
 
     // Now, update all the neighbors as center is now gone since the

@@ -174,4 +174,62 @@ TEST(ContractionTest, PaperExampleOneBatch) {
   EXPECT_EQ(6, shortcuts.size());
 }
 
+RoadGraph MakeKightsGrid() {
+  // This is a graph based on knights grid in chess.
+  //
+  //
+  // A --7-- C --4-- E
+  // | ⟍    |     ⟋ |
+  // 1  3⟍  5   ⟋3  4
+  // |     ⟍| ⟋     |
+  // B --2-- D --8-- F
+  //
+  // VertexID correspondence:
+  // A = 1, B = 2, C = 3
+  // D = 4, E = 5, F = 6
+
+  return RoadGraphBuilder()
+      .AddEdge(1, 3, 7.0)
+      .AddEdge(3, 1, 7.0)
+      .AddEdge(3, 5, 4.0)
+      .AddEdge(5, 3, 4.0)
+      .AddEdge(5, 6, 4.0)
+      .AddEdge(6, 5, 4.0)
+      .AddEdge(6, 4, 8.0)
+      .AddEdge(4, 6, 8.0)
+      .AddEdge(4, 2, 2.0)
+      .AddEdge(2, 4, 2.0)
+      .AddEdge(2, 1, 1.0)
+      .AddEdge(1, 2, 1.0)
+      .AddEdge(1, 4, 3.0)
+      .AddEdge(4, 1, 3.0)
+      .AddEdge(5, 4, 3.0)
+      .AddEdge(4, 5, 3.0)
+      .AddEdge(3, 4, 5.0)
+      .AddEdge(4, 3, 5.0)
+      .Build();
+}
+
+// Unlike the above tests, ContractGraph series tests decide the
+// order by the algorithm itself.
+TEST(ContractionTest, ContractGraph1) {
+  RoadGraph graph       = MakeKightsGrid();
+  SimpleIndexer indexer = SimpleIndexer::CreateFromRawGraph(graph);
+
+  std::vector<std::unique_ptr<graph::Edge>> shortcuts = ContractGraph(&indexer);
+
+  // In this particular case, because of D (VertexID = 4), no
+  // shortcuts needs to be added.
+  EXPECT_EQ(0, shortcuts.size());
+}
+
+TEST(ContractionTest, ContractGraph2) {
+  RoadGraph graph       = MakePaperExampleGraph();
+  SimpleIndexer indexer = SimpleIndexer::CreateFromRawGraph(graph);
+
+  std::vector<std::unique_ptr<graph::Edge>> shortcuts = ContractGraph(&indexer);
+
+  EXPECT_EQ(2, shortcuts.size());
+}
+
 }  // namespace open_semap

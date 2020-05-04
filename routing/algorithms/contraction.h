@@ -27,6 +27,7 @@ std::vector<std::unique_ptr<graph::Edge>> ContractVertices(
 // Contract graph based on the Contraction Hierarchies algorithm. Unlike the
 // above function, this one does not take the contraction order as granted.
 // Instead, it figures out the contraction order by itself.
-std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *indexer);
+std::vector<std::unique_ptr<graph::Edge>> ContractGraph(graph::SimpleIndexer *indexer,
+                                                        bool print_debug_info = false);
 
 }  // namespace open_semap
